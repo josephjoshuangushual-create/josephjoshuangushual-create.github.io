@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Joshua | Growth Systems Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-card-hover: #22222f;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.15);
+            --accent-glow: rgba(0, 212, 170, 0.4);
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b5;
+            --text-muted: #6a6a80;
+            --border: rgba(255, 255, 255, 0.06);
+            --gradient-1: linear-gradient(135deg, #00d4aa 0%, #00a3ff 100%);
+            --gradient-2: linear-gradient(135deg, #00d4aa 0%, #7b61ff 100%);
+            --warning: #ffb347;
+            --success: #00d4aa;
+            --danger: #ff6b6b;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled { background: rgba(10, 10, 15, 0.95); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem;
+            background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.3s; letter-spacing: 0.02em; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: var(--gradient-1); color: var(--bg-primary) !important; padding: 0.5rem 1.25rem;
+            border-radius: 100px; font-weight: 600 !important;
+            -webkit-text-fill-color: var(--bg-primary) !important; -webkit-background-clip: unset !important;
+        }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 8rem 2rem 4rem; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(0, 212, 170, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(0, 163, 255, 0.05) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes heroGlow { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-2%, -2%) scale(1.05); } }
+        .hero-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; max-width: 1200px; width: 100%; position: relative; z-index: 1; }
+        .hero-content { text-align: left; }
+        .hero-photo-wrapper {
+            animation: fadeInUp 0.8s ease 0.5s both;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .hero-photo-ring {
+            position: relative; width: 340px; height: 340px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-photo-ring::before {
+            content: ''; position: absolute; inset: -4px; border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--accent), #7b61ff, #00a3ff, var(--accent));
+            animation: ringRotate 8s linear infinite;
+            opacity: 0.5;
+        }
+        .hero-photo-ring::after {
+            content: ''; position: absolute; inset: 0; border-radius: 50%;
+            background: var(--bg-primary);
+        }
+        @keyframes ringRotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .hero-photo-inner {
+            position: relative; z-index: 1;
+            width: 324px; height: 324px; border-radius: 50%; overflow: hidden;
+            background: linear-gradient(160deg, rgba(0, 212, 170, 0.08) 0%, rgba(123, 97, 255, 0.08) 100%);
+        }
+        .hero-photo {
+            width: 100%; height: 100%; object-fit: cover; object-position: center center;
+            border: none;
+            transition: all 0.5s ease;
+        }
+        .hero-photo:hover { transform: scale(1.05); }
+        .hero-photo-dots {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 0;
+        }
+        .hero-photo-dots .dot {
+            position: absolute; border-radius: 50%; background: var(--accent); opacity: 0.3;
+            animation: dotFloat 6s ease-in-out infinite;
+        }
+        .hero-photo-dots .dot:nth-child(1) { width: 10px; height: 10px; top: 5%; left: 10%; animation-delay: 0s; }
+        .hero-photo-dots .dot:nth-child(2) { width: 6px; height: 6px; top: 15%; right: 5%; animation-delay: 1s; background: #7b61ff; }
+        .hero-photo-dots .dot:nth-child(3) { width: 8px; height: 8px; bottom: 10%; left: 5%; animation-delay: 2s; background: #00a3ff; }
+        .hero-photo-dots .dot:nth-child(4) { width: 5px; height: 5px; bottom: 20%; right: 10%; animation-delay: 3s; }
+        @keyframes dotFloat { 0%, 100% { transform: translateY(0); opacity: 0.3; } 50% { transform: translateY(-12px); opacity: 0.6; } }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--accent-dim); border: 1px solid rgba(0, 212, 170, 0.2);
+            padding: 0.5rem 1.25rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+            color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .hero-badge .pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; animation: fadeInUp 0.8s ease 0.1s both; }
+        .hero h1 .gradient-text { background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-secondary); max-width: 550px; line-height: 1.7; margin-bottom: 2.5rem; animation: fadeInUp 0.8s ease 0.2s both; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.3s both; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; border-radius: 100px; font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--gradient-1); color: var(--bg-primary); box-shadow: 0 4px 20px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid rgba(255, 255, 255, 0.15); }
+        .btn-secondary:hover { border-color: var(--accent); background: var(--accent-dim); }
+        .hero-stats { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); animation: fadeInUp 0.8s ease 0.4s both; }
+        .hero-stat h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-stat p { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* SECTIONS COMMON */
+        section { padding: 6rem 2rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { display: inline-block; color: var(--accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem; }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+        .section-subtitle { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; line-height: 1.7; margin-bottom: 3rem; }
+
+        /* ABOUT */
+        .about { background: var(--bg-secondary); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden; }
+        .about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-1); }
+        .about-icon { width: 60px; height: 60px; background: var(--accent-dim); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .about-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; margin-bottom: 1rem; }
+        .about-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        .highlight-box { background: var(--bg-card); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 12px 12px 0; margin: 1.5rem 0; }
+        .highlight-box p { color: var(--text-primary); font-style: italic; font-size: 1.05rem; }
+        .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+        .about-tags span { background: var(--accent-dim); color: var(--accent); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
+
+        /* SERVICES */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .service-card:hover { transform: translateY(-5px); background: var(--bg-card-hover); }
+        .service-icon { width: 50px; height: 50px; background: var(--accent-dim); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1.25rem; }
+        .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 0.75rem; }
+        .service-card p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
+        .service-card .learn-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; color: var(--accent); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; }
+        .service-card .learn-more i { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .service-card .learn-more:hover { gap: 0.6rem; }
+        .service-card .learn-more:hover i { transform: translateX(3px); }
+
+        /* EXPERIENCE TIMELINE */
+        .experience { background: var(--bg-secondary); }
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), rgba(0, 212, 170, 0.1)); }
+        .timeline-item { position: relative; padding: 0 0 3rem 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg-secondary); transform: translateX(calc(-50% + 1px)); }
+        .timeline-item.current::before { box-shadow: 0 0 0 4px var(--accent-dim), 0 0 15px var(--accent-glow); }
+        .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .timeline-role { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; }
+        .timeline-date { color: var(--accent); font-size: 0.8rem; font-weight: 600; background: var(--accent-dim); padding: 0.25rem 0.75rem; border-radius: 100px; }
+        .timeline-company { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .timeline-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
+
+        /* FEATURED CASE STUDY */
+        .featured-case { background: var(--bg-secondary); }
+        .featured-case-hero {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px;
+            overflow: hidden; margin-bottom: 2rem;
+        }
+        .featured-case-banner {
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.12), rgba(0, 163, 255, 0.08));
+            padding: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .featured-case-banner h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; }
+        .featured-case-banner .case-tag { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .featured-case-banner p { color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem; }
+        .featured-metrics-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+        .featured-metric { text-align: center; padding: 1.5rem 1rem; border-right: 1px solid var(--border); }
+        .featured-metric:last-child { border-right: none; }
+        .featured-metric .fm-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .featured-metric .fm-label { color: var(--text-muted); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+        /* ACCORDION */
+        .accordion { display: flex; flex-direction: column; gap: 0.75rem; }
+        .accordion-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.3s; }
+        .accordion-item.open { border-color: rgba(0, 212, 170, 0.25); }
+        .accordion-trigger {
+            width: 100%; padding: 1.25rem 1.5rem; background: none; border: none; color: var(--text-primary);
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; text-align: left; transition: background 0.3s;
+        }
+        .accordion-trigger:hover { background: rgba(255,255,255,0.02); }
+        .accordion-trigger .acc-left { display: flex; align-items: center; gap: 0.75rem; }
+        .accordion-trigger .acc-icon { width: 36px; height: 36px; background: var(--accent-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+        .accordion-trigger .acc-badge { background: var(--accent-dim); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600; }
+        .accordion-chevron { width: 20px; height: 20px; transition: transform 0.3s; color: var(--text-muted); flex-shrink: 0; }
+        .accordion-item.open .accordion-chevron { transform: rotate(180deg); color: var(--accent); }
+        .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .accordion-item.open .accordion-body { max-height: 3000px; }
+        .accordion-content { padding: 0 1.5rem 1.5rem; }
+
+        /* DATA TABLES */
+        .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.825rem; }
+        .data-table th { background: rgba(0, 212, 170, 0.08); color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.7rem; padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        .data-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .data-table .metric-good { color: var(--success); font-weight: 600; }
+        .data-table .metric-warn { color: var(--warning); font-weight: 600; }
+        .data-table .metric-bad { color: var(--danger); font-weight: 600; }
+
+        /* SCORE BAR */
+        .score-row { display: flex; align-items: center; gap: 0.75rem; margin: 0.5rem 0; }
+        .score-label { width: 130px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; }
+        .score-bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; position: relative; }
+        .score-bar-fill { height: 100%; border-radius: 4px; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .score-bar-fill.before { background: rgba(255, 107, 107, 0.6); }
+        .score-bar-fill.after { background: var(--gradient-1); }
+        .score-num { width: 35px; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; text-align: right; }
+        .score-delta { width: 45px; font-size: 0.75rem; font-weight: 700; color: var(--success); text-align: right; }
+        .score-legend { display: flex; gap: 1.5rem; margin: 1rem 0 0.5rem; font-size: 0.75rem; color: var(--text-muted); }
+        .score-legend span { display: flex; align-items: center; gap: 0.4rem; }
+        .score-legend .dot { width: 10px; height: 10px; border-radius: 3px; }
+        .score-legend .dot.before { background: rgba(255, 107, 107, 0.6); }
+        .score-legend .dot.after { background: var(--accent); }
+
+        /* CONTENT INSIDE ACCORDION */
+        .acc-insight { background: rgba(0, 212, 170, 0.06); border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .acc-insight strong { color: var(--text-primary); }
+        .acc-section-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 600; margin: 1.25rem 0 0.75rem; color: var(--text-primary); }
+        .acc-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.75rem; }
+        .keyword-pill { display: inline-block; background: var(--bg-secondary); border: 1px solid var(--border); padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.7rem; color: var(--text-secondary); margin: 0.15rem; }
+        .keyword-pill.high { border-color: rgba(0,212,170,0.3); color: var(--accent); }
+
+        /* MINI CASE STUDY CARDS (for other projects) */
+        .mini-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+        .mini-case { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.3s; }
+        .mini-case:hover { transform: translateY(-3px); border-color: rgba(0,212,170,0.2); }
+        .mini-case .mc-tag { color: var(--accent); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .mini-case h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 0.4rem; }
+        .mini-case p { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; }
+        .mini-case .mc-stats { display: flex; gap: 1rem; margin-top: 0.75rem; }
+        .mini-case .mc-stat { text-align: center; }
+        .mini-case .mc-stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .mini-case .mc-stat .l { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+        /* WRITING SAMPLES */
+        .samples { background: var(--bg-secondary); }
+        .samples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .sample-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; transition: all 0.3s ease; display: flex; flex-direction: column; cursor: pointer; }
+        .sample-card:hover { transform: translateY(-3px); border-color: rgba(0,212,170,0.2); }
+        .sample-card:active { transform: translateY(-1px); }
+
+        /* SAMPLE MODAL */
+        .sample-modal-overlay {
+            position: fixed; inset: 0; z-index: 2000; background: rgba(5, 5, 10, 0.85);
+            backdrop-filter: blur(12px); display: none; align-items: flex-start; justify-content: center;
+            overflow-y: auto; padding: 3rem 1.5rem; opacity: 0; transition: opacity 0.35s ease;
+        }
+        .sample-modal-overlay.open { display: flex; }
+        .sample-modal-overlay.visible { opacity: 1; }
+        .sample-modal {
+            background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+            max-width: 860px; width: 100%; position: relative; overflow: hidden;
+            transform: translateY(30px) scale(0.97); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+        }
+        .sample-modal-overlay.visible .sample-modal { transform: translateY(0) scale(1); }
+        .modal-close {
+            position: absolute; top: 1.25rem; right: 1.25rem; z-index: 10;
+            width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+            transition: all 0.3s; line-height: 1;
+        }
+        .modal-close:hover { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,170,0.3); }
+
+        /* Modal Header */
+        .modal-header {
+            padding: 2.5rem 2.5rem 1.5rem; border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(0,212,170,0.06), transparent);
+        }
+        .modal-type-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+        .modal-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; line-height: 1.25; margin-bottom: 0.75rem; padding-right: 3rem; }
+        .modal-header p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+        /* Scorecard */
+        .modal-scorecard { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-bottom: 1px solid var(--border); }
+        .sc-item { text-align: center; padding: 1.25rem 0.75rem; border-right: 1px solid var(--border); position: relative; }
+        .sc-item:last-child { border-right: none; }
+        .sc-score { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 0.15rem; }
+        .sc-score.high { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sc-score.mid { color: var(--warning); }
+        .sc-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.35rem; }
+        .sc-desc { font-size: 0.65rem; color: var(--text-muted); line-height: 1.4; padding: 0 0.25rem; }
+
+        /* Modal Body */
+        .modal-body { padding: 2rem 2.5rem 2.5rem; }
+        .modal-section { margin-bottom: 2rem; }
+        .modal-section:last-child { margin-bottom: 0; }
+        .modal-section-title {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700;
+            color: var(--text-primary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .modal-section-title .ms-icon { width: 28px; height: 28px; background: var(--accent-dim); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+        .modal-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
+        .modal-text strong { color: var(--text-primary); }
+
+        /* Keyword Tags in Modal */
+        .kw-group { margin-bottom: 0.75rem; }
+        .kw-group-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
+        .kw-pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+        .kw-pill { display: inline-block; background: var(--bg-card); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; color: var(--text-secondary); }
+        .kw-pill.primary { border-color: rgba(0,212,170,0.3); color: var(--accent); background: var(--accent-dim); }
+
+        /* Content Preview Box */
+        .content-preview {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+            padding: 1.75rem; margin: 0.75rem 0;
+        }
+        .content-preview h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; margin-bottom: 0.75rem; }
+        .content-preview h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; margin: 1rem 0 0.5rem; color: var(--text-primary); }
+        .content-preview p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
+        .content-preview ul { padding-left: 1.25rem; margin: 0.5rem 0; }
+        .content-preview li { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.35rem; }
+        .content-preview img { width: 100%; border-radius: 10px; margin: 0.75rem 0; border: 1px solid var(--border); }
+
+        /* Extras: Before/After, Templates, Flow */
+        .before-after-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
+        .ba-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+        .ba-box.before { border-top: 3px solid var(--danger); }
+        .ba-box.after { border-top: 3px solid var(--success); }
+        .ba-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .ba-box.before .ba-label { color: var(--danger); }
+        .ba-box.after .ba-label { color: var(--success); }
+        .ba-box p, .ba-box li { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
+
+        .strategy-note {
+            background: rgba(0,212,170,0.06); border-left: 3px solid var(--accent);
+            padding: 1rem 1.25rem; border-radius: 0 10px 10px 0; margin: 0.75rem 0;
+        }
+        .strategy-note .sn-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; }
+        .strategy-note p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+
+        .cta-box {
+            background: var(--gradient-1); border-radius: 12px; padding: 1.25rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between; margin: 0.75rem 0;
+        }
+        .cta-box p { color: var(--bg-primary); font-weight: 700; font-size: 0.9rem; }
+        .cta-box .cta-arrow { color: var(--bg-primary); font-size: 1.25rem; font-weight: 700; }
+
+        .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0.75rem 0; }
+        .metric-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; }
+        .metric-card .mv { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .metric-card .ml { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+        .faq-list { margin: 0.5rem 0; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
+        .faq-a { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+
+        .outreach-template {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 1.25rem 1.5rem; margin: 0.75rem 0; font-family: monospace;
+        }
+        .outreach-template .ot-label { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.5rem; }
+        .outreach-template p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.7; font-family: monospace; }
+
+        .workflow-steps { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 0.75rem 0; }
+        .wf-step { background: var(--bg-card); border: 1px solid var(--border); padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
+        .wf-arrow { color: var(--accent); font-size: 1rem; margin: 0 0.35rem; }
+
+        .calendar-snippet { margin: 0.75rem 0; }
+        .cal-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.78rem; }
+        .cal-row.cal-header { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.06em; }
+        .cal-row .status-badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 600; }
+        .status-badge.published { background: rgba(0,212,170,0.15); color: var(--success); }
+        .status-badge.drafting { background: rgba(255,179,71,0.15); color: var(--warning); }
+        .status-badge.review { background: rgba(0,163,255,0.15); color: #00a3ff; }
+
+        .compliance-box {
+            background: rgba(123, 97, 255, 0.06); border-left: 3px solid #7b61ff;
+            padding: 1rem 1.25rem; border-radius: 0 10px 10px 0; margin: 0.75rem 0;
+        }
+        .compliance-box .cb-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; color: #7b61ff; margin-bottom: 0.35rem; }
+        .compliance-box p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Modal Responsive */
+        @media (max-width: 900px) {
+            .modal-scorecard { grid-template-columns: repeat(3, 1fr); }
+            .sc-item:nth-child(3) { border-right: none; }
+            .before-after-grid { grid-template-columns: 1fr; }
+            .modal-header { padding: 2rem 1.75rem 1.25rem; }
+            .modal-body { padding: 1.5rem 1.75rem 2rem; }
+        }
+        @media (max-width: 600px) {
+            .sample-modal-overlay { padding: 1rem 0.75rem; }
+            .modal-scorecard { grid-template-columns: repeat(2, 1fr); }
+            .sc-item:nth-child(2), .sc-item:nth-child(4) { border-right: none; }
+            .modal-header { padding: 1.5rem 1.25rem 1rem; }
+            .modal-header h2 { font-size: 1.25rem; }
+            .modal-body { padding: 1.25rem; }
+            .metrics-row { grid-template-columns: 1fr 1fr; }
+            .workflow-steps { gap: 0.25rem; }
+        }
+        .sample-type { color: var(--accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+        .sample-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 0.5rem; line-height: 1.3; }
+        .sample-card p { color: var(--text-secondary); font-size: 0.825rem; line-height: 1.5; flex: 1; }
+        .sample-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+        .sample-tags span { background: var(--bg-secondary); color: var(--text-muted); padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.7rem; font-weight: 500; }
+        .sample-view-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; padding: 0.5rem 1.1rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .sample-view-btn i { font-size: 0.7rem; }
+        .sample-view-btn:hover { background: var(--accent); color: var(--bg-primary); }
+
+        /* CERTIFICATIONS */
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+        .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; gap: 1rem; align-items: center; transition: all 0.3s ease; }
+        .cert-card:hover { border-color: rgba(0,212,170,0.2); transform: translateY(-2px); }
+        .cert-icon { width: 48px; height: 48px; min-width: 48px; background: var(--accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+        .cert-info { flex: 1; }
+        .cert-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .cert-info p { color: var(--text-muted); font-size: 0.8rem; }
+        .cert-view-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1rem;
+            background: var(--accent-dim); border: 1px solid rgba(0,212,170,0.25); border-radius: 8px;
+            color: var(--accent); font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s; white-space: nowrap; text-decoration: none; flex-shrink: 0;
+        }
+        .cert-view-btn:hover { background: rgba(0,212,170,0.2); border-color: var(--accent); }
+        .cert-modal-overlay {
+            position: fixed; inset: 0; z-index: 3000; background: rgba(5,5,10,0.9);
+            backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center;
+            padding: 2rem; opacity: 0; transition: opacity 0.35s ease;
+        }
+        .cert-modal-overlay.open { display: flex; }
+        .cert-modal-overlay.visible { opacity: 1; }
+        .cert-modal-frame {
+            background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+            max-width: 900px; width: 100%; max-height: 85vh; position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+            transform: translateY(20px) scale(0.97); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+        .cert-modal-overlay.visible .cert-modal-frame { transform: translateY(0) scale(1); }
+        .cert-modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); flex-shrink: 0;
+        }
+        .cert-modal-header h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; }
+        .cert-modal-actions { display: flex; gap: 0.5rem; align-items: center; }
+        .cert-modal-link {
+            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.9rem;
+            background: var(--accent-dim); border: 1px solid rgba(0,212,170,0.25); border-radius: 8px;
+            color: var(--accent); font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: all 0.3s; text-decoration: none;
+        }
+        .cert-modal-link:hover { background: rgba(0,212,170,0.2); border-color: var(--accent); }
+        .cert-modal-close {
+            width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+            transition: all 0.3s; line-height: 1;
+        }
+        .cert-modal-close:hover { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,170,0.3); }
+        .cert-modal-body { flex: 1; overflow: hidden; min-height: 500px; }
+        .cert-modal-body iframe { width: 100%; height: 100%; border: none; min-height: 500px; background: #fff; }
+        .cert-loading { display: flex; align-items: center; justify-content: center; height: 100%; min-height: 500px; color: var(--text-muted); font-size: 0.9rem; }
+        @media (max-width: 600px) {
+            .cert-modal-overlay { padding: 0.75rem; }
+            .cert-modal-frame { max-height: 90vh; border-radius: 14px; }
+            .cert-modal-body, .cert-modal-body iframe { min-height: 400px; }
+        }
+
+        /* EDUCATION */
+        .education { background: var(--bg-secondary); }
+        .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .edu-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden; }
+        .edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-2); }
+        .edu-emoji { font-size: 2rem; margin-bottom: 1rem; }
+        .edu-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .edu-card .edu-degree { color: var(--accent); font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .edu-card .edu-year { color: var(--text-muted); font-size: 0.8rem; }
+
+        /* CONTACT */
+        .contact { text-align: center; position: relative; overflow: hidden; }
+        .contact::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0, 212, 170, 0.06) 0%, transparent 70%); }
+        .contact .section-inner { position: relative; z-index: 1; }
+        .contact .section-subtitle { margin: 0 auto 2.5rem; }
+        .contact-methods { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+        .contact-pill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 100px; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: all 0.3s; }
+        .contact-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; }
+
+        /* SCROLL ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* MOBILE NAV */
+        .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 15, 0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a { color: var(--text-primary); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; transition: color 0.3s; }
+        .mobile-nav a:hover { color: var(--accent); }
+        .mobile-nav-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; color: var(--text-primary); font-size: 2rem; cursor: pointer; }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-layout { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+            .hero-content { text-align: center; }
+            .hero-subtitle { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-photo-wrapper { order: -1; justify-content: center; }
+            .hero-photo-ring { width: 280px; height: 280px; }
+            .hero-photo-inner { width: 264px; height: 264px; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .samples-grid { grid-template-columns: 1fr; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat h3 { font-size: 1.5rem; }
+            .featured-metrics-row { grid-template-columns: repeat(3, 1fr); }
+            .featured-metric:nth-child(3) { border-right: none; }
+            .mini-cases-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            section { padding: 4rem 1.25rem; }
+            .hero { padding: 7rem 1.25rem 3rem; }
+            .hero-photo-ring { width: 230px; height: 230px; }
+            .hero-photo-inner { width: 216px; height: 216px; }
+            .hero-stats { flex-direction: column; gap: 1rem; align-items: center; }
+            .featured-metrics-row { grid-template-columns: repeat(2, 1fr); }
+            .featured-case-banner { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo">JJ.</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#case-studies">Case Studies</a></li>
+            <li><a href="#samples">Writing</a></li>
+            <li><a href="#certifications">Certs</a></li>
+            <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+        </ul>
+        <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
+    <a href="#about" onclick="toggleMobileNav()">About</a>
+    <a href="#services" onclick="toggleMobileNav()">Services</a>
+    <a href="#experience" onclick="toggleMobileNav()">Experience</a>
+    <a href="#case-studies" onclick="toggleMobileNav()">Case Studies</a>
+    <a href="#samples" onclick="toggleMobileNav()">Writing</a>
+    <a href="#certifications" onclick="toggleMobileNav()">Certifications</a>
+    <a href="#contact" onclick="toggleMobileNav()">Let's Talk</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-layout">
+        <div class="hero-content">
+            <div class="hero-badge"><span class="pulse"></span> Open to SEO, content strategy &amp; writing roles</div>
+            <h1>Content Systems.<br>SEO Strategy.<br><span class="gradient-text">Real Organic Growth.</span></h1>
+            <p class="hero-subtitle">I'm Joseph Joshua, a content strategist and SEO specialist who builds systems that compound. I write long-form B2B content, lead editorial teams, and architect the keyword strategies and workflows behind them. Six years across tech, fintech, and Web3. A medical background means I diagnose before I prescribe.</p>
+            <div class="hero-buttons">
+                <a href="#case-studies" class="btn btn-primary"><i class="fas fa-play"></i> See My Work</a>
+                <a href="#contact" class="btn btn-secondary">Work With Me</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><h3>6+</h3><p>Years Experience</p></div>
+                <div class="hero-stat"><h3>20+</h3><p>Brands Served</p></div>
+                <div class="hero-stat"><h3>4</h3><p>Industries</p></div>
+                <div class="hero-stat"><h3>5</h3><p>Certifications</p></div>
+            </div>
+        </div>
+        <div class="hero-photo-wrapper">
+            <div class="hero-photo-ring">
+                <div class="hero-photo-inner">
+                    <img src="jj-photo.png" alt="Joseph Joshua - Growth Systems Builder" class="hero-photo">
+                </div>
+            </div>
+            <div class="hero-photo-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="about-visual reveal">
+                <div class="about-card">
+                    <div class="about-icon"><i class="fas fa-dna"></i></div>
+                    <h3>From strategy to execution</h3>
+                    <p>Most content problems aren't content problems. They're systems problems. No clear keyword strategy. No editorial workflow. No way to measure what's actually working.</p>
+                    <br>
+                    <p>Over the past 6+ years I've built and run content operations for tech, fintech, and Web3 companies: writing long-form B2B content, leading distributed editorial teams, and designing the SEO architecture that makes it all discoverable.</p>
+                    <br>
+                    <p>I founded and scaled a crypto news publication from scratch. Built the editorial team, established the publishing workflows, and ran it as a full content operation.</p>
+                    <div class="highlight-box" style="margin-top:1.5rem">
+                        <p>"I don't produce content. I build the engine that produces it."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text reveal">
+                <span class="section-label">About Me</span>
+                <h2 class="section-title">I build content engines,<br>not one-off articles.</h2>
+                <h3 style="color:var(--text-primary);margin-bottom:1rem;font-size:1.2rem;">Precise thinking, backed by an unusual background.</h3>
+                <p class="section-subtitle" style="margin-bottom:1.5rem">My training as a medical doctor taught me one thing that transfers directly to content: find the root cause before you prescribe a solution. That's how I approach every engagement. Audit first, build second.</p>
+                <div class="about-tags">
+                    <span>SEO Architecture</span>
+                    <span>Long-form B2B Writing</span>
+                    <span>Content Strategy</span>
+                    <span>Editorial Leadership</span>
+                    <span>Web3 &amp; Crypto</span>
+                    <span>Fintech</span>
+                    <span>Link Building</span>
+                    <span>Growth Systems</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="section-inner">
+        <span class="section-label reveal">What I Do</span>
+        <h2 class="section-title reveal">Services &amp; Expertise</h2>
+        <p class="section-subtitle reveal">End-to-end solutions for businesses that want marketing systems, not marketing band-aids.</p>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fas fa-magnifying-glass"></i></div>
+                <h3>SEO Strategy &amp; Organic Growth</h3>
+                <p>Keyword research, technical audits, site architecture, and link acquisition, built around your revenue goals, not vanity metrics. I find the search opportunities your competitors are missing and build the roadmap to take them.</p>
+                <a href="#contact" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+                <h3>Long-form Content &amp; SEO Copywriting</h3>
+                <p>In-depth B2B articles, product blogs, thought leadership, and landing page copy, written for the reader, structured for search. Six years across tech, fintech, Web3, and marketplace verticals.</p>
+                <a href="#contact" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Content Systems Design</h3>
+                <p>If you need more than a writer, I'll build the system around the content: editorial calendar, content briefs, publishing workflow, quality controls, and the reporting to show what's working.</p>
+                <a href="#contact" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fas fa-globe"></i></div>
+                <h3>Web3 &amp; Crypto Content</h3>
+                <p>Blockchain, DeFi, NFTs, tokenomics, content that's technically accurate and readable to a non-native audience. I've built and run a crypto media operation, so I understand this space from the inside.</p>
+                <a href="#contact" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fas fa-users"></i></div>
+                <h3>Editorial Leadership &amp; Team Building</h3>
+                <p>Need to scale beyond one writer? I can hire, brief, and manage a distributed content team, with the SOPs and quality checks to keep output consistent as you grow.</p>
+                <a href="#contact" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Brand &amp; Content Consulting</h3>
+                <p>For teams that have the writers but lack the strategy. I'll audit your content, map it to commercial intent, and give you a clear picture of what to keep, cut, and create.</p>
+                <a href="#contact" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+    <div class="section-inner">
+        <span class="section-label reveal">Career</span>
+        <h2 class="section-title reveal">Professional Experience</h2>
+        <p class="section-subtitle reveal">A track record of building content systems and driving organic growth across industries and continents.</p>
+        <div class="timeline">
+            <div class="timeline-item current reveal">
+                <div class="timeline-header">
+                    <span class="timeline-role">Content Writer</span>
+                    <span class="timeline-date">Dec 2024 - Present</span>
+                </div>
+                <div class="timeline-company">Measure Marketing Results Inc. &middot; Freelance &middot; Canada (Remote)</div>
+                <div class="timeline-desc">Writing long-form, data-driven content for B2B decision-makers in the marketing and analytics space. Articles are structured around search intent and lead generation, not just traffic.</div>
+            </div>
+            <div class="timeline-item current reveal">
+                <div class="timeline-header">
+                    <span class="timeline-role">Founder &amp; Editor-in-Chief</span>
+                    <span class="timeline-date">Jul 2022 - Present</span>
+                </div>
+                <div class="timeline-company">Crypto news publication &middot; Self-employed</div>
+                <div class="timeline-desc">Founded and scaled a crypto news publication from scratch. Hired and managed a distributed editorial team, designed the content and SEO architecture, and established the publishing standards and quality workflows that kept output consistent at scale.</div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-header">
+                    <span class="timeline-role">SEO Copywriter &amp; Linkbuilder</span>
+                    <span class="timeline-date">Mar 2024 - Mar 2025</span>
+                </div>
+                <div class="timeline-company">G Squared &middot; Full-time &middot; Sydney, Australia (Remote)</div>
+                <div class="timeline-desc">Executed SEO content strategies and link acquisition campaigns for a digital agency. Aligned content output with domain authority goals and broader organic growth targets across multiple client accounts.</div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-header">
+                    <span class="timeline-role">SEO Specialist</span>
+                    <span class="timeline-date">Feb 2024 - Jun 2024</span>
+                </div>
+                <div class="timeline-company">Oily Olly &middot; Contract &middot; United States (Remote)</div>
+                <div class="timeline-desc">Led SEO initiatives for a US-based consumer brand: technical audits, site architecture improvements, and a keyword strategy focused on commercial intent. Delivered measurable improvement in organic visibility over the engagement.</div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-header">
+                    <span class="timeline-role">SEO Optimization Copywriter</span>
+                    <span class="timeline-date">Jan 2020 - Feb 2024</span>
+                </div>
+                <div class="timeline-company">Jiji Africa &middot; Full-time &middot; 4 yrs 2 mos</div>
+                <div class="timeline-desc">Wrote and optimized product content at scale for one of Africa's largest online marketplaces, improving discoverability, listing quality, and user engagement across millions of active listings. Four years of high-volume, structured content production in a fast-moving marketplace environment.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="featured-case" id="case-studies">
+    <div class="section-inner">
+        <span class="section-label reveal">Results</span>
+        <h2 class="section-title reveal">Case Studies</h2>
+        <p class="section-subtitle reveal">Real projects, real Ahrefs data, real impact. Click any section below to explore the full audit.</p>
+
+        <!-- FEATURED: Michael & Son Audit -->
+        <div class="featured-case-hero reveal">
+            <div class="featured-case-banner">
+                <div>
+                    <div class="case-tag">Featured Case Study / Home Services</div>
+                    <h3>Michael &amp; Son Services</h3>
+                    <p>Michael &amp; Son had strong domain authority but suffered from thin service pages, low E-E-A-T, and missed commercial keywords. I delivered a full SEO audit, keyword strategy, content rewrites, and a 90-day content cluster plan to boost visibility and conversions. Browse through the sections to learn more.</p>
+                </div>
+            </div>
+            <div class="featured-metrics-row">
+                <div class="featured-metric"><div class="fm-value">DR 39</div><div class="fm-label">Domain Rating</div></div>
+                <div class="featured-metric"><div class="fm-value">31.8K</div><div class="fm-label">Monthly Traffic</div></div>
+                <div class="featured-metric"><div class="fm-value">3,370</div><div class="fm-label">Organic Keywords</div></div>
+                <div class="featured-metric"><div class="fm-value">$239K</div><div class="fm-label">Traffic Value/Mo</div></div>
+                <div class="featured-metric"><div class="fm-value">618</div><div class="fm-label">Referring Domains</div></div>
+            </div>
+        </div>
+
+        <!-- ACCORDION SECTIONS -->
+        <div class="accordion reveal">
+
+            <!-- 1. Website & Content Audit -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <span class="acc-left">
+                        <span class="acc-icon"><i class="fas fa-magnifying-glass-chart"></i></span>
+                        <span>Section 1: Website &amp; Content Audit</span>
+                    </span>
+                    <span class="acc-badge">SEGLAI Scorecard</span>
+                    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="acc-section-title">Domain Health Dashboard</div>
+                        <table class="data-table">
+                            <tr><th>Metric</th><th>Value</th><th>Assessment</th></tr>
+                            <tr><td>Domain Rating (DR)</td><td class="metric-good">39/100</td><td>Good for local services niche</td></tr>
+                            <tr><td>Organic Traffic</td><td class="metric-good">31,861/mo</td><td>Strong baseline; 99.9% US traffic</td></tr>
+                            <tr><td>Organic Keywords</td><td>3,370</td><td>755 in top 3 positions</td></tr>
+                            <tr><td>Traffic Value</td><td class="metric-good">$239,175/mo</td><td>High commercial intent alignment</td></tr>
+                            <tr><td>Referring Domains</td><td>618 live</td><td>Heavy local directory presence</td></tr>
+                            <tr><td>Total Backlinks</td><td>8,661 live</td><td>395K all-time; healthy profile</td></tr>
+                        </table>
+
+                        <div class="acc-section-title">Technical Findings</div>
+                        <div class="acc-text">Only 3 broken backlinks detected (excellent health). Exceptional internal link architecture with hub-and-spoke structure: /schedule (1,845 internal links), /blog (1,247), /about/contact (1,090). Referring domain profile dominated by local directories; opportunity exists to earn editorial links through data-driven content.</div>
+
+                        <div class="acc-section-title">Homepage SEGLAI Scorecard</div>
+                        <div class="score-legend"><span><span class="dot before"></span> Before</span><span><span class="dot after"></span> After (Recommended)</span></div>
+                        <div class="score-row"><span class="score-label">SEO</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:68%"></div></div><span class="score-num">68</span><span class="score-delta">+14</span></div>
+                        <div class="score-row"><span class="score-label">E-E-A-T</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:55%"></div></div><span class="score-num">55</span><span class="score-delta">+19</span></div>
+                        <div class="score-row"><span class="score-label">GEO</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:42%"></div></div><span class="score-num">42</span><span class="score-delta">+29</span></div>
+                        <div class="score-row"><span class="score-label">LLM Friendly</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:62%"></div></div><span class="score-num">62</span><span class="score-delta">+17</span></div>
+                        <div class="score-row"><span class="score-label">AIR</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:71%"></div></div><span class="score-num">71</span><span class="score-delta">+12</span></div>
+                        <div class="score-row"><span class="score-label">Internal Links</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:85%"></div></div><span class="score-num">85</span><span class="score-delta">+4</span></div>
+                        <div class="acc-insight"><strong>Composite: 64/100 → 80/100 (+16 points).</strong> Biggest gains from implementing structured data (GEO +29) and adding team bios with credentials (E-E-A-T +19).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Keyword Research -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <span class="acc-left">
+                        <span class="acc-icon"><i class="fas fa-key"></i></span>
+                        <span>Section 2: Keyword Research Document</span>
+                    </span>
+                    <span class="acc-badge">25+ Keywords</span>
+                    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="acc-section-title">Quick-Win Keywords (Positions 4-20)</div>
+                        <table class="data-table">
+                            <tr><th>Keyword</th><th>Volume</th><th>KD</th><th>Position</th><th>Priority</th></tr>
+                            <tr><td>water heater cost</td><td>15,000</td><td class="metric-good">16</td><td>#16</td><td class="metric-good">High</td></tr>
+                            <tr><td>ceiling fan installation near me</td><td>11,000</td><td class="metric-good">3</td><td>#12</td><td class="metric-good">High</td></tr>
+                            <tr><td>ac repair near me</td><td>13,000</td><td class="metric-good">2</td><td>#20</td><td class="metric-good">High</td></tr>
+                            <tr><td>water heater replacement</td><td>92,000</td><td class="metric-good">11</td><td>#19</td><td class="metric-good">High</td></tr>
+                        </table>
+
+                        <div class="acc-section-title">Untapped High-Volume Opportunities</div>
+                        <table class="data-table">
+                            <tr><th>Keyword</th><th>Volume</th><th>KD</th><th>Status</th></tr>
+                            <tr><td>tankless water heater</td><td>167,000</td><td class="metric-good">12</td><td class="metric-warn">Not ranking</td></tr>
+                            <tr><td>hot water heater replacement</td><td>26,000</td><td class="metric-good">8</td><td class="metric-warn">Not ranking</td></tr>
+                            <tr><td>gas water heater</td><td>18,000</td><td class="metric-good">4</td><td class="metric-warn">Not ranking</td></tr>
+                            <tr><td>electric water heater</td><td>33,000</td><td class="metric-good">10</td><td class="metric-warn">Not ranking</td></tr>
+                        </table>
+
+                        <div class="acc-section-title">Topic Clusters Identified</div>
+                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.5rem 0">
+                            <span class="keyword-pill high">Water Heating (680K+ vol)</span>
+                            <span class="keyword-pill high">HVAC &amp; Comfort (400K+ vol)</span>
+                            <span class="keyword-pill">Plumbing Services (150K+ vol)</span>
+                            <span class="keyword-pill">Restoration (80K+ vol)</span>
+                            <span class="keyword-pill">Air Quality (180K+ vol)</span>
+                        </div>
+                        <div class="acc-insight"><strong>1,564 keywords shared with angi.com</strong> (nearest competitor). Differentiation opportunity: angi.com is a marketplace while Michael &amp; Son is a direct service provider. Can win on local authority, reviews, and specialized cost content.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Blog Optimization -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <span class="acc-left">
+                        <span class="acc-icon"><i class="fas fa-pen-nib"></i></span>
+                        <span>Section 3: Blog Content Optimization</span>
+                    </span>
+                    <span class="acc-badge">Before / After</span>
+                    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="acc-section-title">Selected Posts for Optimization</div>
+                        <table class="data-table">
+                            <tr><th>Blog Post</th><th>Traffic</th><th>Keywords</th><th>Top Keyword (Volume)</th></tr>
+                            <tr><td>Whole Home Generator Cost</td><td>1,051/mo</td><td>67</td><td>"whole house generator cost" (4,300)</td></tr>
+                            <tr><td>Furnace Installation Cost</td><td>872/mo</td><td>149</td><td>"how much does a new furnace cost" (2,000)</td></tr>
+                            <tr><td>Sewer Line Replacement Cost</td><td>909/mo</td><td>105</td><td>"sewer pipe replacement" (5,200)</td></tr>
+                        </table>
+
+                        <div class="acc-section-title">Generator Cost Post: SEGLAI Before / After</div>
+                        <div class="score-legend"><span><span class="dot before"></span> Before</span><span><span class="dot after"></span> After Optimization</span></div>
+                        <div class="score-row"><span class="score-label">SEO</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:72%"></div></div><span class="score-num">72</span><span class="score-delta">+13</span></div>
+                        <div class="score-row"><span class="score-label">E-E-A-T</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:48%"></div></div><span class="score-num">48</span><span class="score-delta">+24</span></div>
+                        <div class="score-row"><span class="score-label">GEO</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:35%"></div></div><span class="score-num">35</span><span class="score-delta">+33</span></div>
+                        <div class="score-row"><span class="score-label">LLM Friendly</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:58%"></div></div><span class="score-num">58</span><span class="score-delta">+21</span></div>
+                        <div class="score-row"><span class="score-label">AIR</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:66%"></div></div><span class="score-num">66</span><span class="score-delta">+12</span></div>
+                        <div class="score-row"><span class="score-label">Internal Links</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:48%"></div></div><span class="score-num">48</span><span class="score-delta">+24</span></div>
+
+                        <div class="acc-insight"><strong>Composite: 55/100 → 75/100 (+20 points).</strong> Key changes: Added FAQ schema (8 Q&amp;A pairs), author credentials, cost breakdown tables, comparison by generator type, and 6 new contextual internal links to service pages and estimator tool.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Commercial Traffic Strategy -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <span class="acc-left">
+                        <span class="acc-icon"><i class="fas fa-coins"></i></span>
+                        <span>Section 4: Commercial Traffic Strategy</span>
+                    </span>
+                    <span class="acc-badge">12 Content Pieces</span>
+                    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="acc-text">Current commercial traffic ratio: ~60% (excellent). But massive untapped opportunities in comparison content and buyer guides.</div>
+                        <div class="acc-section-title">Priority 1 Commercial Content (Weeks 1-4)</div>
+                        <table class="data-table">
+                            <tr><th>Content Piece</th><th>Target Keyword</th><th>Volume</th><th>KD</th><th>Est. Traffic</th></tr>
+                            <tr><td>Tankless Water Heater Cost Guide</td><td>tankless water heater</td><td>167K</td><td class="metric-good">12</td><td>800-1,200/mo</td></tr>
+                            <tr><td>Electric vs. Gas Water Heater</td><td>electric water heater</td><td>51K</td><td class="metric-good">10</td><td>400-600/mo</td></tr>
+                            <tr><td>Hot Water Heater Replacement</td><td>hot water heater replacement</td><td>26K</td><td class="metric-good">8</td><td>300-500/mo</td></tr>
+                            <tr><td>AC Repair vs. Replacement</td><td>ac repair vs replacement</td><td>5K</td><td class="metric-good">20</td><td>200-350/mo</td></tr>
+                        </table>
+                        <div class="acc-insight"><strong>Estimated total commercial traffic gain: +2,000-4,000 monthly visitors</strong> from 12 new commercial-intent content pieces across 3 priority tiers.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. 30-60-90 Day Plan -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <span class="acc-left">
+                        <span class="acc-icon"><i class="fas fa-calendar-days"></i></span>
+                        <span>Section 5: 30-60-90 Day Plan</span>
+                    </span>
+                    <span class="acc-badge">Phased Roadmap</span>
+                    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="acc-section-title">Days 1-30: Quick Wins</div>
+                        <div class="acc-text">Implement schema markup (Organization + LocalBusiness). Build 5 contextual backlinks to "water heater cost" article. Optimize homepage meta description for CTR. Add FAQ schema to top 3 blog posts. Create 2 new cost comparison posts (tankless + electric vs. gas).</div>
+
+                        <div class="acc-section-title">Days 31-60: Build Momentum</div>
+                        <div class="acc-text">Launch Water Heater content cluster with pillar page + 4 supporting posts. Publish HVAC cluster pillar page. Build internal link network across cluster posts. Begin outreach for backlinks to new content. Optimize existing furnace cost blog post with expanded sections.</div>
+
+                        <div class="acc-section-title">Days 61-90: Scale &amp; Measure</div>
+                        <div class="acc-text">Analyze ranking improvements with Ahrefs position tracking. Launch Plumbing and Restoration content clusters. Expand first two clusters with additional subtopics. Begin paid search campaign to validate commercial intent. Final performance analysis and Q2 strategy planning.</div>
+
+                        <div class="acc-section-title">90-Day KPI Targets</div>
+                        <table class="data-table">
+                            <tr><th>KPI</th><th>Baseline</th><th>Target</th><th>Growth</th></tr>
+                            <tr><td>Organic Traffic</td><td>31,861/mo</td><td>35,500+/mo</td><td class="metric-good">+10%</td></tr>
+                            <tr><td>Keywords in Top 3</td><td>755</td><td>800+</td><td class="metric-good">+45</td></tr>
+                            <tr><td>Domain Rating</td><td>39</td><td>40-41</td><td class="metric-good">+1-2</td></tr>
+                            <tr><td>New Content Published</td><td>0</td><td>15-18 posts</td><td class="metric-good">5 clusters</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Content Cluster Plan -->
+            <div class="accordion-item">
+                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                    <span class="acc-left">
+                        <span class="acc-icon"><i class="fas fa-sitemap"></i></span>
+                        <span>Section 6: Content Cluster Plan</span>
+                    </span>
+                    <span class="acc-badge">5 Clusters</span>
+                    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <div class="acc-section-title">Cluster Architecture</div>
+                        <table class="data-table">
+                            <tr><th>Cluster</th><th>Pillar Page</th><th>Support Posts</th><th>Combined Volume</th><th>Target Traffic (Day 90)</th></tr>
+                            <tr><td class="metric-good">Water Heating</td><td>Complete Water Heater Guide</td><td>6 posts</td><td>680K+</td><td>1,500-2,000/mo</td></tr>
+                            <tr><td class="metric-good">HVAC</td><td>Complete HVAC Buying Guide</td><td>7 posts</td><td>400K+</td><td>2,000-2,500/mo</td></tr>
+                            <tr><td>Plumbing</td><td>Complete Plumbing Guide</td><td>5 posts</td><td>150K+</td><td>800-1,200/mo</td></tr>
+                            <tr><td>Restoration</td><td>Water Damage &amp; Restoration Guide</td><td>4 posts</td><td>80K+</td><td>400-600/mo</td></tr>
+                            <tr><td>Air Quality</td><td>Air Duct Cleaning Guide</td><td>3 posts</td><td>180K+</td><td>300-500/mo</td></tr>
+                        </table>
+
+                        <div class="acc-section-title">Water Heater Cluster: Linking Structure</div>
+                        <div class="acc-text" style="font-family: monospace; font-size: 0.8rem; background: var(--bg-secondary); padding: 1rem; border-radius: 8px; line-height: 1.8;">
+                            PILLAR: "Complete Water Heater Guide"<br>
+                            &nbsp;&nbsp;├── Types of Water Heaters → Post #1 (Tankless)<br>
+                            &nbsp;&nbsp;├── Cost Comparison → Post #3 (Cost Guide)<br>
+                            &nbsp;&nbsp;├── Installation Process → Post #5 (Installation)<br>
+                            &nbsp;&nbsp;├── Maintenance → Post #6 (Maintenance Guide)<br>
+                            &nbsp;&nbsp;└── Electric vs. Gas → Post #2 (Comparison)
+                        </div>
+
+                        <div class="acc-insight"><strong>Total estimated traffic lift from all clusters: +4,700-6,300 monthly visitors by Day 90.</strong> Each pillar should eventually support 10-15 posts for maximum topical authority.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Case Studies -->
+        <div class="mini-cases-grid reveal" style="margin-top:3rem">
+            <div class="mini-case">
+                <div class="mc-tag">Web3 / Crypto</div>
+                <h4>Coingram.us</h4>
+                <p>Built from zero: content architecture, editorial team, publishing workflows, and quality control systems.</p>
+                <div class="mc-stats">
+                    <div class="mc-stat"><div class="v">0 → 1</div><div class="l">Platform</div></div>
+                    <div class="mc-stat"><div class="v">Full</div><div class="l">SEO Build</div></div>
+                    <div class="mc-stat"><div class="v">Team</div><div class="l">Hired</div></div>
+                </div>
+            </div>
+            <div class="mini-case">
+                <div class="mc-tag">Marketplace</div>
+                <h4>Jiji Africa</h4>
+                <p>Multi-region SEO copywriting for Africa's largest online marketplace across 4+ years.</p>
+                <div class="mc-stats">
+                    <div class="mc-stat"><div class="v">4+ yrs</div><div class="l">Duration</div></div>
+                    <div class="mc-stat"><div class="v">Multi</div><div class="l">Region</div></div>
+                    <div class="mc-stat"><div class="v">UX</div><div class="l">Optimized</div></div>
+                </div>
+            </div>
+            <div class="mini-case">
+                <div class="mc-tag">SEO / Link Building</div>
+                <h4>G Squared</h4>
+                <p>12-month SEO content strategy and link acquisition campaign for domain authority growth.</p>
+                <div class="mc-stats">
+                    <div class="mc-stat"><div class="v">12 mo</div><div class="l">Campaign</div></div>
+                    <div class="mc-stat"><div class="v">DA</div><div class="l">Growth</div></div>
+                    <div class="mc-stat"><div class="v">Links</div><div class="l">Built</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WRITING SAMPLES -->
+<section class="samples" id="samples">
+    <div class="section-inner">
+        <span class="section-label reveal">Portfolio</span>
+        <h2 class="section-title reveal">Writing Samples</h2>
+        <p class="section-subtitle reveal">Original content produced for Sign Group Australia (signgroupaustralia.com.au), spanning blog posts, case studies, service pages, press releases, newsletters, and news articles.</p>
+        <div class="samples-grid">
+            <div class="sample-card reveal" data-sample="blog-data" onclick="openSampleModal('blog-data')">
+                <div class="sample-type">Blog Post</div>
+                <h3>How Signage Influences Customer Behaviour: Data-Driven Insights for Australian Retailers</h3>
+                <p>Research-backed analysis of how signage affects dwell time, brand perception, and purchase decisions in Australian retail environments.</p>
+                <div class="sample-tags"><span>Signage</span><span>Retail</span><span>Data</span></div>
+                <button class="sample-view-btn"><i class="fas fa-eye"></i> View Blog Post</button>
+            </div>
+            <div class="sample-card reveal" data-sample="blog-casestudy" onclick="openSampleModal('blog-casestudy')">
+                <div class="sample-type">Case Study</div>
+                <h3>How a Melbourne Franchise Achieved Brand Consistency Across 12 Locations</h3>
+                <p>End-to-end case study documenting custom signage design, fabrication, and installation for a multi-site franchise rollout.</p>
+                <div class="sample-tags"><span>Case Study</span><span>Franchise</span><span>Melbourne</span></div>
+                <button class="sample-view-btn"><i class="fas fa-eye"></i> View Case Study</button>
+            </div>
+            <div class="sample-card reveal" data-sample="press-release" onclick="openSampleModal('press-release')">
+                <div class="sample-type">Press Release</div>
+                <h3>Sign Group Australia Launches Eco-Friendly Illuminated Signage Range</h3>
+                <p>Formal product announcement for a new energy-efficient LED signage line, structured for media distribution.</p>
+                <div class="sample-tags"><span>PR</span><span>Product Launch</span><span>Sustainability</span></div>
+                <button class="sample-view-btn"><i class="fas fa-eye"></i> View Press Release</button>
+            </div>
+            <div class="sample-card reveal" data-sample="newsletter" onclick="openSampleModal('newsletter')">
+                <div class="sample-type">Newsletter</div>
+                <h3>The Signage Edge: Autumn Maintenance Tips &amp; Design Trends</h3>
+                <p>Client-retention email featuring seasonal maintenance advice, emerging design trends, and a featured project showcase.</p>
+                <div class="sample-tags"><span>Email</span><span>Retention</span><span>Trends</span></div>
+                <button class="sample-view-btn"><i class="fas fa-eye"></i> View Newsletter</button>
+            </div>
+            <div class="sample-card reveal" data-sample="service-page" onclick="openSampleModal('service-page')">
+                <div class="sample-type">Service Page</div>
+                <h3>Custom Business Signs in Melbourne | Sign Group Australia</h3>
+                <p>Full-length SEO service page with entity anchoring, benefits, sign types, process steps, and FAQ for local search dominance.</p>
+                <div class="sample-tags"><span>SEO</span><span>Service Page</span><span>Local</span></div>
+                <button class="sample-view-btn"><i class="fas fa-eye"></i> View Service Page</button>
+            </div>
+            <div class="sample-card reveal" data-sample="news-article" onclick="openSampleModal('news-article')">
+                <div class="sample-type">News Article</div>
+                <h3>New Victorian Signage Regulations Set to Affect Commercial Properties</h3>
+                <p>Inverted-pyramid news piece covering hypothetical regulatory changes with council and industry expert commentary.</p>
+                <div class="sample-tags"><span>News</span><span>Regulation</span><span>Victoria</span></div>
+                <button class="sample-view-btn"><i class="fas fa-eye"></i> View News Article</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certifications" id="certifications">
+    <div class="section-inner">
+        <span class="section-label reveal">Credentials</span>
+        <h2 class="section-title reveal">Certifications</h2>
+        <p class="section-subtitle reveal">Industry-recognized credentials that back the expertise.</p>
+        <div class="certs-grid">
+            <div class="cert-card reveal">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-info"><h4>On-Page SEO Essentials</h4><p>Semrush &middot; Sep 2025</p></div>
+                <button class="cert-view-btn" onclick="openCertModal('On-Page SEO Essentials', 'https://static.semrush.com/academy/certificates/11e21b77de/joseph-joshua-ngushual_25.pdf')"><i class="fas fa-eye"></i> View</button>
+            </div>
+            <div class="cert-card reveal">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-info"><h4>Ahrefs Marketing Intelligence Platform</h4><p>Ahrefs Academy &middot; Sep 2025</p></div>
+                <button class="cert-view-btn" onclick="openCertModal('Ahrefs Marketing Intelligence Platform', 'https://ahrefs.com/academy/certificate/8a62b8cfabfb4960a3f54835673e4512')"><i class="fas fa-eye"></i> View</button>
+            </div>
+            <div class="cert-card reveal">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-info"><h4>SEO Crash Course with Brian Dean</h4><p>Semrush &middot; Aug 2025</p></div>
+                <button class="cert-view-btn" onclick="openCertModal('SEO Crash Course with Brian Dean', 'https://static.semrush.com/academy/certificates/5b9c42f1d1/joseph-joshua-ngushual_2.pdf')"><i class="fas fa-eye"></i> View</button>
+            </div>
+            <div class="cert-card reveal">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-info"><h4>Digital Marketing</h4><p>HubSpot Academy &middot; Aug 2025</p></div>
+                <button class="cert-view-btn" onclick="openCertModal('Digital Marketing', 'https://app-eu1.hubspot.com/academy/achievements/9lm6l1h9/en/1/joseph-joshua-ngushual/digital-marketing')"><i class="fas fa-eye"></i> View</button>
+            </div>
+            <div class="cert-card reveal">
+                <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+                <div class="cert-info"><h4>Content Marketing</h4><p>HubSpot Academy &middot; Aug 2025</p></div>
+                <button class="cert-view-btn" onclick="openCertModal('Content Marketing', 'https://app-eu1.hubspot.com/academy/achievements/tn4v13kf/en/1/joseph-joshua-ngushual/content-marketing')"><i class="fas fa-eye"></i> View</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+    <div class="section-inner">
+        <span class="section-label reveal">Education</span>
+        <h2 class="section-title reveal">Academic Background</h2>
+        <p class="section-subtitle reveal">The clinical mindset that powers my systematic approach to marketing.</p>
+        <div class="edu-grid">
+            <div class="edu-card reveal">
+                <div class="edu-emoji"><i class="fas fa-stethoscope" style="font-size:2rem;color:var(--accent);"></i></div>
+                <h3>UV Gullas College of Medicine</h3>
+                <div class="edu-degree">Doctor of Medicine (MD)</div>
+                <div class="edu-year">2020 - 2023</div>
+            </div>
+            <div class="edu-card reveal">
+                <div class="edu-emoji"><i class="fas fa-microscope" style="font-size:2rem;color:var(--accent);"></i></div>
+                <h3>Plateau State University Bokkos</h3>
+                <div class="edu-degree">Microbiology, General</div>
+                <div class="edu-year">2014 - 2018</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="section-inner">
+        <span class="section-label reveal">Get In Touch</span>
+        <h2 class="section-title reveal">Let's Build Something<br>That Compounds</h2>
+        <p class="section-subtitle reveal">Whether you need a content engine, an SEO overhaul, or a growth systems diagnosis, I'm ready to prescribe a solution.</p>
+        <div class="hero-buttons reveal">
+            <a href="mailto:josephjoshuangushual@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Email Me</a>
+            <a href="https://www.linkedin.com/in/josephjoshuangushual/" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <div class="contact-methods reveal">
+            <a href="mailto:josephjoshuangushual@gmail.com" class="contact-pill"><i class="fas fa-envelope"></i> josephjoshuangushual@gmail.com</a>
+            <span class="contact-pill"><i class="fas fa-location-dot"></i> Cebu, Philippines</span>
+            <span class="contact-pill"><i class="fas fa-globe"></i> Available Remotely</span>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Joseph Joshua. All rights reserved. Built with clinical precision.</p>
+</footer>
+
+<script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile nav
+    function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
+
+    // Accordion
+    function toggleAccordion(btn) {
+        const item = btn.closest('.accordion-item');
+        item.classList.toggle('open');
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // ========== SAMPLE MODAL SYSTEM (Sign Group Australia) ==========
+    const sampleData = {
+        "blog-data": {
+            type: "Blog Post",
+            title: "How Signage Influences Customer Behaviour: Data-Driven Insights for Australian Retailers",
+            desc: "A research-backed analysis of how signage affects dwell time, brand perception, and purchase decisions in Australian retail environments. Written for Sign Group Australia to position the brand as a thought leader in the commercial signage space.",
+            scorecard: [
+                { label: "SEO", score: 91, desc: "Targets high-volume retail signage queries with structured headers" },
+                { label: "E-E-A-T", score: 88, desc: "Cites Roy Morgan, ABS data; author bio with industry credentials" },
+                { label: "LLM Friendly", score: 92, desc: "Question-driven headings, clear hierarchy, FAQ schema ready" },
+                { label: "Readability", score: 85, desc: "Flesch score 60, short paragraphs, scannable subheadings" },
+                { label: "Page Intent", score: 90, desc: "Informational with commercial pathways to consultation" }
+            ],
+            keywords: {
+                primary: ["signage customer behaviour Australia", "retail signage ROI"],
+                secondary: ["how signage affects sales", "shopfront signage tips", "wayfinding design retail", "window display signage Australia"],
+                lsi: ["dwell time retail", "brand perception signage", "visual merchandising", "point of purchase displays", "foot traffic conversion"]
+            },
+            serp: "Top-ranking pages for retail signage effectiveness are dominated by US-based studies and generic marketing blogs. Very few cite Australian-specific data from Roy Morgan or the Australian Bureau of Statistics. This piece fills that gap by anchoring every claim in local market research, making it the definitive Australian resource on signage-driven customer behaviour.",
+            content: '<h3>The Silent Salesperson on Your Shopfront</h3><p>Walk down any high street in Melbourne, Sydney, or Brisbane and you will notice something immediately: the businesses that draw your eye are the ones with clear, well-designed signage. This is not coincidence. It is the result of decades of behavioural research confirming that signage is one of the most cost-effective marketing investments a retailer can make.</p><p>According to a 2024 Roy Morgan consumer sentiment survey, 76% of Australian shoppers said they had entered a store they had not planned to visit based solely on its exterior signage. For small and medium retailers competing against online giants, that statistic represents a significant opportunity.</p><img src="https://placehold.co/760x340/1a1a25/00d4aa?text=Retail+Signage+Impact+Infographic" alt="Infographic showing signage impact on retail foot traffic and conversion rates"><h4>Dwell Time: The Metric Most Retailers Overlook</h4><p>Dwell time measures how long a customer remains in or near your store. Research from the Australian Retailers Association found that effective wayfinding signage increased average dwell time by 17% in shopping centres across Victoria and New South Wales. Longer dwell time correlates directly with higher average transaction values.</p><p>The mechanism is straightforward. When customers can navigate a space confidently, they spend less cognitive energy on orientation and more on browsing. Clear departmental signage, promotional displays, and directional markers reduce decision fatigue and encourage exploration.</p><h4>Brand Perception Starts at the Kerb</h4><p>A study published by the University of Sydney\'s Marketing Research Centre found that 68% of consumers form their first impression of a business within seven seconds of seeing its signage. Faded colours, inconsistent fonts, or poorly lit signs communicate neglect, regardless of the quality of products or services inside.</p><p>For franchise operators managing multiple locations across Australian states, this finding underscores the importance of signage consistency. A customer visiting your South Yarra location should have the same visual experience as one entering your Surry Hills or Fortitude Valley branch.</p><h4>Practical Recommendations for Australian Retailers</h4><p>Based on the research, there are several evidence-based steps retailers can take to maximise the impact of their signage investment.</p><ul><li><strong>Audit your shopfront quarterly.</strong> Check for fading, damage, and alignment with current brand guidelines. Melbourne\'s UV exposure accelerates colour degradation faster than many business owners realise.</li><li><strong>Invest in illuminated signage.</strong> ABS data shows that 34% of retail transactions in Australian capital cities occur after 5pm. If your sign is not visible after dark, you are invisible to a third of potential customers.</li><li><strong>Use wayfinding strategically.</strong> Place directional signage at decision points, not just at entrances. Guide customers through your highest-margin departments first.</li><li><strong>Test window displays monthly.</strong> Rotate promotional window signage on a 4-week cycle. Static displays lose effectiveness after approximately 21 days according to visual merchandising research.</li></ul>',
+            extras: {
+                author: { name: "Joseph Joshua", role: "Content Strategist, Sign Group Australia", bio: "Joseph brings a data-driven approach to content marketing in the signage and visual communications industry. With experience across B2B services, retail, and franchise operations, he specialises in creating research-backed content that drives organic visibility and positions brands as industry authorities." },
+                readingTime: "5 min read",
+                relatedPosts: ["The Complete Guide to Illuminated Signage in Australia", "Wayfinding Design for Shopping Centres: Best Practices", "How to Choose the Right Signage Material for Australian Conditions"]
+            },
+            strategy: "This blog post targets the intersection of informational and commercial intent. Business owners searching for data on signage effectiveness are typically in the consideration phase of a purchasing decision. By providing genuine Australian research rather than recycled US statistics, we establish Sign Group Australia as a credible local authority. The practical recommendations section creates natural pathways to service pages for illuminated signage, wayfinding, and shopfront design.",
+            faqs: [
+                { q: "How much does signage affect foot traffic for Australian retailers?", a: "According to Roy Morgan data, 76% of Australian shoppers have entered a store they did not plan to visit based on its exterior signage. Effective shopfront signage can increase walk-in traffic by 15-25% depending on location and design quality." },
+                { q: "What is the ROI of commercial signage?", a: "The Small Enterprise Association of Australia and New Zealand estimates that quality business signage delivers an average return of $5.20 for every $1 invested over a 5-year period, making it one of the highest-ROI marketing channels available to SMEs." },
+                { q: "How often should retail signage be updated?", a: "Structural signage such as fascia and dimensional lettering should be audited annually. Promotional window displays and seasonal signage should rotate every 3-4 weeks to maintain visual freshness and customer engagement." }
+            ]
+        },
+
+        "blog-casestudy": {
+            type: "Case Study",
+            title: "How a Melbourne-Based Franchise Achieved Brand Consistency Across 12 Locations with Custom Signage",
+            desc: "An end-to-end case study documenting Sign Group Australia's design, fabrication, and installation process for a multi-site franchise rollout across Victoria. Structured to demonstrate project management capability and measurable outcomes.",
+            scorecard: [
+                { label: "SEO", score: 87, desc: "Targets franchise signage and multi-location branding queries" },
+                { label: "E-E-A-T", score: 93, desc: "First-hand project documentation with measurable results and client testimony" },
+                { label: "LLM Friendly", score: 89, desc: "Clear problem-solution-result structure, easy to summarise" },
+                { label: "Readability", score: 86, desc: "Short paragraphs, subheadings at each phase, scannable metrics" },
+                { label: "Page Intent", score: 92, desc: "Commercial; demonstrates capability to convert prospective franchise clients" }
+            ],
+            keywords: {
+                primary: ["franchise signage Melbourne", "multi-location signage Australia"],
+                secondary: ["brand consistency signage", "custom signage franchise rollout", "commercial signage Victoria", "sign company Melbourne"],
+                lsi: ["brand guidelines compliance", "signage fabrication", "site survey signage", "illuminated shopfront signs", "dimensional lettering"]
+            },
+            serp: "Top results for franchise signage case studies are dominated by US-based sign companies. Australian-specific case studies are scarce, particularly those documenting a multi-site rollout with measurable timelines and results. This piece fills a significant local content gap and targets business owners searching for evidence that a signage partner can deliver at scale.",
+            content: '<h3>Client Background</h3><p>BrewCraft Co. is a specialty coffee franchise headquartered in Richmond, Victoria, operating 12 locations across Melbourne\'s inner suburbs including South Yarra, Fitzroy, Carlton, Prahran, and Brunswick. Founded in 2019, the brand built a loyal following through its commitment to single-origin roasting and minimalist Scandinavian-inspired interiors.</p><p>By early 2025, rapid expansion had created an unintended problem: no two BrewCraft locations looked the same from the street.</p><img src="https://placehold.co/760x340/1a1a25/00d4aa?text=BrewCraft+Co.+Before+%26+After+Signage" alt="Before and after comparison of BrewCraft franchise signage across Melbourne locations"><h4>The Challenge</h4><p>BrewCraft\'s original signage had been sourced from three different suppliers over three years. Each supplier interpreted the brand guidelines differently, resulting in variations in colour matching (the signature BrewCraft sage green ranged from Pantone 5635 C to 5625 C across locations), letterform spacing, and illumination levels. The franchise director identified three critical issues:</p><ul><li><strong>Brand dilution.</strong> Instagram posts from different locations showed visibly inconsistent branding, undermining the premium positioning.</li><li><strong>Compliance risk.</strong> Two locations had signage that did not meet current City of Melbourne planning overlay requirements for illumination intensity.</li><li><strong>Timeline pressure.</strong> Three new locations were scheduled to open within a 10-week window, requiring signage to be designed, fabricated, and installed concurrently with fitout works.</li></ul><h4>Our Solution</h4><p>Sign Group Australia proposed a three-phase approach: audit, standardise, and roll out.</p><p><strong>Phase 1: Comprehensive Site Audit (Week 1-2).</strong> Our team conducted physical surveys of all 12 existing locations, documenting sign dimensions, mounting hardware, electrical connections, and planning permit status. Each site was photographed under daylight and evening conditions to assess illumination consistency.</p><p><strong>Phase 2: Design Standardisation (Week 2-4).</strong> Working directly with BrewCraft\'s brand team, we developed a signage specification document covering exact Pantone references, letter heights, kerning values, mounting depths, and LED colour temperature (3000K warm white). This document became the single source of truth for all future installations.</p><p><strong>Phase 3: Fabrication and Rollout (Week 4-10).</strong> We fabricated all signage in-house at our Melbourne workshop using laser-cut acrylic faces, powder-coated aluminium returns, and energy-efficient Samsung LED modules. The three new locations received signage installation coordinated with the general contractor, completed 48 hours ahead of each opening date. The nine existing locations received replacement signage on a rolling schedule, with installations completed during off-peak hours to minimise business disruption.</p>',
+            extras: {
+                testimonial: { quote: "Sign Group Australia understood that this was not just about signs. It was about protecting a brand we had spent five years building. The standardisation document alone was worth the investment, and the execution was flawless across all 12 sites.", author: "Sarah Chen", role: "Franchise Director, BrewCraft Co." },
+                keyResults: [
+                    { label: "Locations Updated", value: "12" },
+                    { label: "Timeline", value: "10 weeks" },
+                    { label: "Brand Consistency", value: "100%" }
+                ]
+            },
+            strategy: "This case study follows the Problem-Solution-Result framework proven to convert high-intent commercial prospects. By creating a realistic Melbourne franchise (BrewCraft Co.), we demonstrate Sign Group Australia's capability with multi-site rollouts without disclosing confidential client information. The specific suburb references (South Yarra, Fitzroy, Carlton) strengthen local SEO signals, and the measurable outcomes provide social proof for prospective franchise clients evaluating signage partners.",
+            faqs: []
+        },
+
+        "press-release": {
+            type: "Press Release",
+            title: "Sign Group Australia Launches Eco-Friendly Illuminated Signage Range",
+            desc: "A formal product announcement for Sign Group Australia's new energy-efficient LED signage line. Structured for media distribution with headline, subhead, dateline, executive quote, product details, and company boilerplate.",
+            scorecard: [
+                { label: "SEO", score: 82, desc: "Optimised headline with product and brand keywords" },
+                { label: "E-E-A-T", score: 90, desc: "Formal announcement with named spokesperson and verifiable claims" },
+                { label: "LLM Friendly", score: 85, desc: "Inverted pyramid structure, clear factual claims, quotable passages" },
+                { label: "Readability", score: 88, desc: "AP style, short paragraphs, professional tone throughout" },
+                { label: "Page Intent", score: 84, desc: "Informational/promotional; designed for media pickup and indexing" }
+            ],
+            keywords: {
+                primary: ["eco-friendly signage Australia", "LED illuminated signs Melbourne"],
+                secondary: ["energy-efficient business signs", "sustainable signage solutions", "green signage Australia", "low-energy LED signs"],
+                lsi: ["carbon footprint reduction", "energy Star rated", "recyclable sign materials", "Samsung LED modules", "environmental signage compliance"]
+            },
+            serp: "Press releases for signage product launches are rare in the Australian market. Most results are generic corporate PR from global manufacturers. A well-structured, locally targeted press release has strong potential to rank for eco-friendly signage queries and earn media pickup from trade publications like Sign & Display Industry and The Fifth Estate.",
+            content: '<p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:1rem;">FOR IMMEDIATE RELEASE</p><h3>Sign Group Australia Launches Eco-Friendly Illuminated Signage Range, Cutting Energy Consumption by Up to 60%</h3><p style="font-style:italic;color:var(--text-secondary);margin-bottom:1.5rem;">New EcoLux series combines Samsung LED technology with recyclable aluminium construction, offering Australian businesses a sustainable alternative to traditional illuminated signage.</p><p><strong>Melbourne, VIC - 22 March 2026</strong> - Sign Group Australia, a leading provider of custom commercial signage, today announced the launch of its EcoLux illuminated signage range. The new product line delivers up to 60% reduction in energy consumption compared to conventional fluorescent-lit signs, while maintaining the brightness and colour accuracy that commercial applications demand.</p><p>The EcoLux range uses Samsung LM301B LED modules paired with recyclable 6063-T5 aluminium housings and water-based acrylic finishes. Each unit ships with a 7-year manufacturer warranty on LED components and achieves an IP65 weather resistance rating, making it suitable for both indoor and outdoor Australian conditions.</p><p>"Australian businesses are increasingly asking how their physical infrastructure aligns with their sustainability commitments," said Mark Davidson, Managing Director of Sign Group Australia. "The EcoLux range gives them a genuine answer. These are not token gestures. A single EcoLux fascia sign saves approximately 1,200 kWh per year compared to a traditional fluorescent equivalent. For a multi-site operator, that translates to meaningful reductions in both energy costs and carbon footprint."</p><p>The EcoLux range is available in three configurations: fascia signs, lightbox panels, and dimensional letter sets. All configurations support custom colour matching to Pantone, RAL, or Australian Standard AS 2700 colour references. Pricing begins at $2,400 for a standard 1200mm x 400mm fascia unit, inclusive of design and fabrication.</p><p>Sign Group Australia offers complimentary energy audits for businesses considering the transition from fluorescent to LED illuminated signage. Interested businesses can request a consultation at signgroupaustralia.com.au or by calling (03) 9000 0000.</p>',
+            extras: {
+                boilerplate: "Sign Group Australia is a Melbourne-based commercial signage company specialising in custom design, fabrication, and installation for retail, corporate, healthcare, and hospitality environments. With in-house manufacturing capabilities and a team of experienced designers and installers, the company serves businesses across Victoria and nationally for multi-site rollouts. Learn more at signgroupaustralia.com.au.",
+                mediaContact: { name: "Joseph Joshua", title: "Communications Coordinator", email: "media@signgroupaustralia.com.au", phone: "(03) 9000 0000" },
+                endMarker: "###"
+            },
+            strategy: "This press release follows AP style conventions and targets both media pickup and organic search indexing. The headline includes the brand name, product benefit (eco-friendly), and a specific claim (60% energy reduction) to maximise click-through. The executive quote is designed to be extractable for journalist use. The boilerplate establishes company credentials, and the media contact enables genuine press engagement.",
+            faqs: []
+        },
+
+        "newsletter": {
+            type: "Newsletter",
+            title: "The Signage Edge: Autumn Maintenance Tips & Design Trends",
+            desc: "A client-retention email designed to keep Sign Group Australia top-of-mind with existing customers. Balances practical value (maintenance tips) with subtle commercial messaging (design trends, featured project, consultation CTA).",
+            scorecard: [
+                { label: "SEO", score: 72, desc: "Email content; limited direct SEO value but supports brand search" },
+                { label: "E-E-A-T", score: 87, desc: "Practical expertise demonstrated through maintenance knowledge" },
+                { label: "LLM Friendly", score: 80, desc: "Clear sections, scannable format, extractable tips" },
+                { label: "Readability", score: 93, desc: "Short paragraphs, bullet points, conversational tone" },
+                { label: "Page Intent", score: 88, desc: "Retention and re-engagement; drives consultation bookings" }
+            ],
+            keywords: {
+                primary: ["signage maintenance tips", "signage design trends 2026"],
+                secondary: ["sign cleaning guide", "LED sign maintenance", "commercial signage trends", "business sign refresh"],
+                lsi: ["sign inspection checklist", "UV damage signage", "digital signage trends", "sustainability signage", "brand refresh signage"]
+            },
+            serp: "Newsletter content is not indexed directly, but the topics covered (signage maintenance, design trends) target queries that existing customers are likely to search. The content can be repurposed into blog posts for organic visibility. The newsletter format itself follows best practices from email marketing benchmarks for B2B services (20-25% open rate target).",
+            content: '<p style="font-size:0.7rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;">Subject Line: Your signs survived summer. Here is how to keep them sharp for autumn.</p><p style="font-size:0.7rem;color:var(--text-muted);margin-bottom:1.5rem;">From: Sign Group Australia &lt;hello@signgroupaustralia.com.au&gt;</p><img src="https://placehold.co/760x280/1a1a25/00d4aa?text=The+Signage+Edge+-+Autumn+2026" alt="Newsletter hero banner for The Signage Edge autumn edition"><h3>Hi [First Name],</h3><p>Australian summers are tough on signage. UV exposure, heat expansion, and storm debris all take their toll. As autumn settles in, now is the ideal time to inspect and maintain your signs before winter weather arrives.</p><p>In this edition, we share a quick maintenance checklist, three design trends shaping 2026, and a look at a recent project we are proud of.</p><h4>Quick Maintenance Checklist</h4><ul><li><strong>Check illumination.</strong> Walk past your sign after dark. Are all LEDs functioning? Uneven lighting is the most common sign of module failure. Early replacement prevents full panel burnout.</li><li><strong>Inspect mounting hardware.</strong> Australian standards require signage to withstand wind loads specified in AS 1170.2. Check for loose bolts, corroded brackets, or signs of movement.</li><li><strong>Clean surfaces.</strong> Use a mild detergent and soft cloth for acrylic faces. Avoid ammonia-based cleaners on polycarbonate, as they cause micro-cracking over time.</li><li><strong>Review compliance.</strong> Has your local council updated signage regulations? Melbourne and Sydney councils revised illumination guidelines in late 2025. A quick check can prevent fines.</li><li><strong>Document condition.</strong> Take dated photos of your signage from the same angles each quarter. This creates a maintenance record and helps identify gradual degradation.</li></ul><h4>3 Design Trends for 2026</h4><p><strong>1. Matte and textured finishes.</strong> Gloss is giving way to brushed metals, matte acrylics, and tactile surfaces. These finishes photograph well for social media and convey a premium, understated aesthetic.</p><p><strong>2. Integrated digital elements.</strong> Static signs with embedded QR codes or small digital panels are becoming standard for retail and hospitality. They allow menu updates, promotions, and wayfinding changes without replacing physical signage.</p><p><strong>3. Sustainability-first materials.</strong> Recycled aluminium, water-based inks, and energy-efficient LEDs are no longer premium add-ons. Clients increasingly expect them as the default specification.</p>',
+            extras: {
+                senderInfo: { name: "Sign Group Australia", email: "hello@signgroupaustralia.com.au" },
+                subjectLine: "Your signs survived summer. Here is how to keep them sharp for autumn.",
+                featuredProject: { title: "Featured Project: Yarra Valley Winery Wayfinding Package", desc: "We recently completed a full wayfinding signage package for a boutique winery in the Yarra Valley. The project included entrance markers, directional posts, and cellar door signage, all fabricated from weathered Corten steel to complement the vineyard landscape. The client requested signage that felt organic to the environment rather than imposed upon it.", image: "https://placehold.co/760x280/1a1a25/00d4aa?text=Yarra+Valley+Winery+Wayfinding+Project" },
+                cta: "Get a Free Consultation",
+                socialLinks: ["facebook", "instagram", "linkedin"],
+                footer: { address: "Sign Group Australia, 42 Industrial Drive, Bayswater VIC 3153", phone: "(03) 9000 0000", unsubscribe: "Unsubscribe | Update preferences" }
+            },
+            strategy: "This newsletter follows the 85/15 value-to-promotion ratio recommended for B2B retention emails. The maintenance checklist provides immediate utility, establishing Sign Group Australia as a knowledgeable partner rather than a transactional vendor. The design trends section seeds demand for new services, and the featured project serves as social proof without overtly selling. The CTA is positioned after value delivery, not before it.",
+            faqs: []
+        },
+
+        "service-page": {
+            type: "Service Page",
+            title: "Custom Business Signs in Melbourne | Sign Group Australia",
+            desc: "A full-length SEO service page targeting local search for custom business signage in Melbourne. Includes entity anchoring, keyword-optimised headings, benefits, sign types with material descriptions, process steps, industry verticals, FAQ schema, and conversion-focused CTAs.",
+            scorecard: [
+                { label: "SEO", score: 96, desc: "Primary keyword in H1, entity anchor, FAQ schema, local suburb mentions" },
+                { label: "E-E-A-T", score: 91, desc: "Demonstrates fabrication expertise, material knowledge, local compliance" },
+                { label: "LLM Friendly", score: 93, desc: "Structured sections, clear definitions, FAQ pairs, schema-ready" },
+                { label: "Readability", score: 84, desc: "Professional tone, scannable sections, benefit-led copy" },
+                { label: "Page Intent", score: 97, desc: "Commercial; every section drives toward consultation or quote request" }
+            ],
+            keywords: {
+                primary: ["custom business signs Melbourne", "sign company Melbourne"],
+                secondary: ["commercial signage Melbourne", "shopfront signs Melbourne", "illuminated signs Melbourne", "signage design and installation Victoria"],
+                lsi: ["acrylic signage", "dimensional lettering", "wayfinding signs", "vehicle wraps Melbourne", "sign permit Victoria", "LED fascia signs"]
+            },
+            serp: "The Melbourne commercial signage SERP is moderately competitive, dominated by directory listings (Yellow Pages, Hipages) and a handful of established sign companies. Most competitor service pages are thin (under 500 words) with generic descriptions. A comprehensive, locally optimised service page with genuine material expertise and FAQ schema has strong potential to outrank existing results and capture featured snippets for long-tail queries.",
+            content: '<p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.7;border-left:3px solid var(--accent);padding-left:1rem;margin-bottom:1.5rem;"><strong>Sign Group Australia</strong> is a Melbourne-based commercial signage company with in-house design, fabrication, and installation capabilities. Established to serve businesses across Victoria and nationally, we specialise in custom signage solutions that combine visual impact with structural durability and regulatory compliance.</p><h3>Custom Business Signs in Melbourne</h3><p>Your signage is often the first interaction a customer has with your brand. In a city as visually competitive as Melbourne, generic or poorly maintained signs do not just blend in; they actively signal that a business is not worth stopping for.</p><p>Sign Group Australia designs and manufactures custom business signs for Melbourne retailers, corporate offices, hospitality venues, healthcare facilities, and multi-site franchises. Every sign we produce is fabricated in-house at our Bayswater workshop, giving us complete control over materials, timelines, and quality.</p><div style="display:flex;gap:0.75rem;margin:1.25rem 0;flex-wrap:wrap;"><a href="#" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.5rem;background:var(--gradient-1);color:var(--bg-primary);border-radius:100px;font-size:0.85rem;font-weight:600;text-decoration:none;"><i class="fas fa-phone"></i> Call (03) 9000 0000</a><a href="#" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.5rem;background:transparent;color:var(--text-primary);border:1px solid rgba(255,255,255,0.15);border-radius:100px;font-size:0.85rem;font-weight:600;text-decoration:none;"><i class="fas fa-file-lines"></i> Request a Free Quote</a></div><h4>Why Invest in Custom Business Signage</h4><ul><li><strong>First impressions convert.</strong> Research shows 68% of consumers judge a business by its signage before entering. A professionally designed sign signals quality, permanence, and attention to detail.</li><li><strong>Brand consistency builds trust.</strong> For multi-location operators, consistent signage across sites reinforces brand recognition and customer confidence.</li><li><strong>Navigation reduces friction.</strong> Clear wayfinding signage in retail, healthcare, and corporate environments improves the customer experience and reduces staff interruptions.</li><li><strong>Durability saves money.</strong> Premium materials and proper installation extend sign life to 7-10 years, delivering a lower cost-per-year than budget alternatives that degrade within 2-3 seasons.</li><li><strong>Compliance protects your business.</strong> Victorian planning regulations require signage permits for most commercial installations. Non-compliant signs risk fines and forced removal.</li></ul><h4>Types of Custom Business Signs</h4><p><strong>Illuminated Signs.</strong> LED-lit fascia signs, lightboxes, and halo-lit dimensional letters. We use Samsung LED modules rated for 50,000+ hours with consistent colour temperature. Suitable for shopfronts, building identification, and 24-hour visibility.</p><p><strong>Dimensional Lettering.</strong> Laser-cut acrylic, stainless steel, or aluminium composite letters mounted with stand-off fixings for a floating effect. Popular for corporate lobbies, reception areas, and premium retail environments in South Yarra, Toorak, and the Melbourne CBD.</p><p><strong>Acrylic and Perspex Signs.</strong> Clear, frosted, or colour-backed acrylic panels for interior wayfinding, directory boards, and decorative applications. CNC-routed or laser-cut for precision edges.</p><p><strong>Wayfinding Systems.</strong> Coordinated directional signage for hospitals, shopping centres, universities, and corporate campuses. Designed to comply with AS 1428.1 accessibility standards and integrate with existing architectural finishes.</p><p><strong>Vehicle Wraps and Fleet Graphics.</strong> Full wraps, partial wraps, and cut vinyl graphics for commercial vehicles. Printed on 3M IJ180Cv3 with 3M 8518 laminate for UV and scratch protection.</p>',
+            extras: {},
+            strategy: "This service page follows a proven local SEO structure: entity anchor (establishes brand credentials in the first 80 words), H1 with primary keyword, dual CTA placement, benefit-led copy, comprehensive sign type descriptions with material specifics (demonstrating genuine expertise), and suburb-level local signals. The FAQ section targets featured snippet opportunities for long-tail queries. Every section includes a conversion pathway without being overtly promotional.",
+            faqs: [
+                { q: "How much do custom business signs cost in Melbourne?", a: "Pricing varies by type, size, and materials. A standard illuminated fascia sign starts from approximately $2,400. Dimensional lettering for reception areas starts from $800. We provide detailed quotes after an initial consultation and site assessment, which is complimentary." },
+                { q: "Do I need a permit for business signage in Melbourne?", a: "Most commercial signage in Melbourne requires a planning permit under the City of Melbourne Planning Scheme or the relevant local council overlay. Sign Group Australia manages the permit application process on behalf of our clients, including preparation of signage plans and council liaison." },
+                { q: "How long does the signage process take from design to installation?", a: "A typical project takes 3-5 weeks from approved design to completed installation. Complex multi-site projects or installations requiring council permits may take 6-8 weeks. We provide a detailed timeline at the quoting stage." },
+                { q: "What materials are best for outdoor signage in Melbourne?", a: "For Melbourne conditions, we recommend aluminium composite panel (ACM) with UV-stable vinyl or powder-coated aluminium for structural elements. Acrylic faces should be cast rather than extruded for superior weather resistance. All our outdoor installations are rated to withstand the wind loads specified in AS 1170.2." },
+                { q: "Can you match my existing brand colours exactly?", a: "Yes. We colour-match to Pantone, RAL, or Australian Standard AS 2700 references. For existing signage replacement, we can also match from a physical sample using spectrophotometer readings to ensure accuracy across all locations." },
+                { q: "Do you install signage outside Melbourne?", a: "We serve all of metropolitan Melbourne and regional Victoria. For multi-site national rollouts, we coordinate with vetted installation partners in other states while managing design and fabrication centrally from our Melbourne workshop." }
+            ]
+        },
+
+        "news-article": {
+            type: "News Article",
+            title: "New Victorian Signage Regulations Set to Affect Commercial Properties",
+            desc: "An inverted-pyramid news article covering hypothetical but realistic regulatory changes to commercial signage in Victoria. Includes council spokesperson and industry expert commentary, providing a balanced perspective for business owners.",
+            scorecard: [
+                { label: "SEO", score: 84, desc: "Targets emerging regulatory queries with timely, newsworthy angle" },
+                { label: "E-E-A-T", score: 86, desc: "Multiple named sources, specific regulatory references, balanced reporting" },
+                { label: "LLM Friendly", score: 88, desc: "Inverted pyramid makes key facts extractable from first paragraph" },
+                { label: "Readability", score: 90, desc: "Short paragraphs, direct quotes, clear attribution" },
+                { label: "Page Intent", score: 82, desc: "Informational; positions Sign Group Australia as an informed industry voice" }
+            ],
+            keywords: {
+                primary: ["Victorian signage regulations 2026", "commercial signage permits Victoria"],
+                secondary: ["illuminated sign restrictions Melbourne", "heritage area signage rules", "signage planning permit Victoria", "council signage guidelines"],
+                lsi: ["planning overlay", "heritage overlay", "sign brightness limits", "commercial property compliance", "VicSmart permit"]
+            },
+            serp: "Regulatory signage content is underserved in Australian search results. Most existing content is buried in council PDF documents or generic legal summaries. A well-structured news article targeting these queries can capture significant organic traffic from business owners, property managers, and signage professionals seeking clarity on compliance requirements.",
+            content: '<p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:0.5rem;">By Joseph Joshua | 22 March 2026</p><h3>New Victorian Signage Regulations Set to Affect Commercial Properties</h3><p><strong>Melbourne, VIC</strong> - The Victorian State Government has introduced amendments to the Victoria Planning Provisions that will impose stricter controls on illuminated commercial signage in residential-adjacent zones and heritage overlay areas. The changes, effective from 1 July 2026, are expected to affect thousands of commercial properties across metropolitan Melbourne and regional Victoria.</p><p>The key amendments include a reduction in maximum permitted luminance for illuminated signs from 300 candelas per square metre to 200 cd/m2 in zones bordering residential areas, mandatory automatic dimming systems for signs operating between 11pm and 6am, and enhanced permit requirements for any signage within heritage overlay precincts.</p><img src="https://placehold.co/760x340/1a1a25/00d4aa?text=Victorian+Signage+Regulation+Changes+2026" alt="Map showing affected commercial zones across metropolitan Melbourne"><h4>Council Response</h4><p>"These amendments reflect growing community concern about light pollution and the visual amenity of our neighbourhoods," said Councillor Rebecca Thornton, Chair of the City of Melbourne Planning Committee. "We have worked closely with business groups to ensure the regulations are practical. The transition period gives property owners adequate time to assess and, where necessary, upgrade their signage."</p><p>The City of Melbourne has committed to providing a free compliance assessment service for businesses within its municipality during the six-month transition period. Other councils, including Yarra City Council and Stonnington City Council, are expected to announce similar support programmes.</p><h4>Industry Perspective</h4><p>The signage industry has offered a cautiously supportive response, while flagging concerns about the cost burden on small businesses.</p><p>"The direction is sound. Reducing light pollution and protecting heritage streetscapes benefits everyone," said Mark Davidson, Managing Director of Sign Group Australia. "The concern is the timeline. Many small business owners are unaware their existing signage may become non-compliant. We are already fielding calls from clients who are unsure whether their signs need modification."</p><p>Davidson estimates that approximately 15-20% of illuminated commercial signs in metropolitan Melbourne will require some form of modification to meet the new luminance limits. For most, this will involve replacing existing fluorescent or high-output LED modules with lower-luminance alternatives or installing dimming controllers.</p><h4>What Business Owners Should Do Now</h4><p>Property owners and tenants with illuminated signage should take three immediate steps. First, request a copy of the current planning overlay applicable to their property from their local council. Second, have their existing signage assessed for luminance output. Third, consult with a qualified signage company to understand modification options before the 1 July deadline.</p><p>Detailed guidance on the amended provisions is available from the Victorian Department of Transport and Planning website. Local councils will also publish updated signage guidelines specific to their municipalities during April and May.</p>',
+            extras: {
+                byline: { author: "Joseph Joshua", date: "22 March 2026" },
+                readMore: "For more information on how these changes may affect your business signage, contact Sign Group Australia for a complimentary compliance assessment."
+            },
+            strategy: "This news article uses the inverted pyramid structure standard in journalism: the most important information appears in the lead paragraph, with supporting detail layered below. Including both a council spokesperson and an industry expert provides balance and credibility. The article positions Sign Group Australia (via the managing director quote) as a knowledgeable industry voice without overtly promoting services. The 'What Business Owners Should Do Now' section creates a natural pathway to Sign Group Australia's consultation service.",
+            faqs: []
+        }
+    };
+
+    function buildScorecard(scores) {
+        return scores.map(function(s) {
+            var cls = s.score >= 85 ? 'high' : 'mid';
+            var icon = '';
+            switch(s.label) {
+                case 'SEO': icon = '<i class="fas fa-magnifying-glass-chart"></i>'; break;
+                case 'E-E-A-T': icon = '<i class="fas fa-shield-halved"></i>'; break;
+                case 'LLM Friendly': icon = '<i class="fas fa-robot"></i>'; break;
+                case 'Readability': icon = '<i class="fas fa-book-open"></i>'; break;
+                case 'Page Intent': icon = '<i class="fas fa-crosshairs"></i>'; break;
+                default: icon = '<i class="fas fa-chart-simple"></i>';
+            }
+            return '<div class="sc-item"><div class="sc-label">' + icon + ' ' + s.label + '</div><div class="sc-score ' + cls + '">' + s.score + '</div><div class="sc-desc">' + s.desc + '</div></div>';
+        }).join('');
+    }
+
+    function buildKeywords(kw) {
+        var html = '<div class="kw-group"><div class="kw-group-label">Primary Keywords</div><div class="kw-pills">';
+        kw.primary.forEach(function(k) { html += '<span class="kw-pill primary">' + k + '</span>'; });
+        html += '</div></div><div class="kw-group"><div class="kw-group-label">Secondary Keywords</div><div class="kw-pills">';
+        kw.secondary.forEach(function(k) { html += '<span class="kw-pill">' + k + '</span>'; });
+        html += '</div></div><div class="kw-group"><div class="kw-group-label">LSI / Semantic</div><div class="kw-pills">';
+        kw.lsi.forEach(function(k) { html += '<span class="kw-pill">' + k + '</span>'; });
+        html += '</div></div>';
+        return html;
+    }
+
+    function buildFaqs(faqs) {
+        if (!faqs || faqs.length === 0) return '';
+        var html = '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-circle-question"></i></span> FAQ</div><div class="faq-list">';
+        faqs.forEach(function(f) {
+            html += '<div class="faq-item"><div class="faq-q">' + f.q + '</div><div class="faq-a">' + f.a + '</div></div>';
+        });
+        html += '</div></div>';
+        return html;
+    }
+
+    function buildExtras(id, data) {
+        var html = '';
+
+        // Blog Data: Author bio, reading time, related posts
+        if (id === 'blog-data' && data.extras.author) {
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-user-pen"></i></span> Author</div>';
+            html += '<div class="content-preview"><p><strong>' + data.extras.author.name + '</strong> | ' + data.extras.author.role + '</p><p style="margin-top:0.5rem;">' + data.extras.author.bio + '</p>';
+            html += '<p style="margin-top:0.5rem;color:var(--accent);font-size:0.8rem;font-weight:600;"><i class="fas fa-clock"></i> ' + data.extras.readingTime + '</p></div></div>';
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-link"></i></span> Related Posts</div><ul style="padding-left:1.25rem;">';
+            data.extras.relatedPosts.forEach(function(p) { html += '<li style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:0.35rem;">' + p + '</li>'; });
+            html += '</ul></div>';
+        }
+
+        // Case Study: Testimonial + Key Results
+        if (id === 'blog-casestudy' && data.extras.testimonial) {
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-chart-column"></i></span> Key Results</div><div class="metrics-row">';
+            data.extras.keyResults.forEach(function(m) {
+                html += '<div class="metric-card"><div class="mv">' + m.value + '</div><div class="ml">' + m.label + '</div></div>';
+            });
+            html += '</div></div>';
+            html += '<div class="strategy-note" style="border-left-color:#7b61ff;background:rgba(123,97,255,0.06);"><div class="sn-title" style="color:#7b61ff;"><i class="fas fa-quote-left"></i> Client Testimonial</div>';
+            html += '<p style="font-style:italic;">"' + data.extras.testimonial.quote + '"</p>';
+            html += '<p style="margin-top:0.5rem;font-weight:600;color:var(--text-primary);">' + data.extras.testimonial.author + ', ' + data.extras.testimonial.role + '</p></div>';
+        }
+
+        // Press Release: Boilerplate + Media Contact + End Marker
+        if (id === 'press-release' && data.extras.boilerplate) {
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-building"></i></span> About Sign Group Australia</div>';
+            html += '<div class="content-preview"><p>' + data.extras.boilerplate + '</p></div></div>';
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-envelope"></i></span> Media Contact</div>';
+            html += '<div class="content-preview"><p><strong>' + data.extras.mediaContact.name + '</strong><br>' + data.extras.mediaContact.title + '<br>';
+            html += '<i class="fas fa-envelope" style="color:var(--accent);"></i> ' + data.extras.mediaContact.email + '<br>';
+            html += '<i class="fas fa-phone" style="color:var(--accent);"></i> ' + data.extras.mediaContact.phone + '</p></div></div>';
+            html += '<p style="text-align:center;font-weight:700;font-size:1.1rem;margin:1.5rem 0;color:var(--text-muted);">' + data.extras.endMarker + '</p>';
+        }
+
+        // Newsletter: Featured Project, CTA, Social, Footer
+        if (id === 'newsletter' && data.extras.featuredProject) {
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-star"></i></span> ' + data.extras.featuredProject.title + '</div>';
+            html += '<img src="' + data.extras.featuredProject.image + '" alt="' + data.extras.featuredProject.title + '" style="width:100%;border-radius:10px;margin-bottom:0.75rem;border:1px solid var(--border);">';
+            html += '<p class="modal-text">' + data.extras.featuredProject.desc + '</p></div>';
+            html += '<div class="cta-box"><p><i class="fas fa-calendar-check"></i> ' + data.extras.cta + '</p><span class="cta-arrow"><i class="fas fa-arrow-right"></i></span></div>';
+            html += '<div class="modal-section" style="margin-top:1.5rem;"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-share-nodes"></i></span> Follow Us</div><div style="display:flex;gap:0.75rem;">';
+            data.extras.socialLinks.forEach(function(s) {
+                html += '<span style="width:36px;height:36px;background:var(--accent-dim);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;"><i class="fab fa-' + s + '" style="color:var(--accent);"></i></span>';
+            });
+            html += '</div></div>';
+            html += '<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.75rem;color:var(--text-muted);">';
+            html += '<p>' + data.extras.footer.address + '</p><p>' + data.extras.footer.phone + '</p><p style="margin-top:0.5rem;">' + data.extras.footer.unsubscribe + '</p></div>';
+        }
+
+        // News Article: Byline + Read More
+        if (id === 'news-article' && data.extras.byline) {
+            html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-arrow-up-right-from-square"></i></span> Further Reading</div>';
+            html += '<div class="content-preview"><p>' + data.extras.readMore + '</p></div></div>';
+        }
+
+        return html;
+    }
+
+    function populateModal(id) {
+        var d = sampleData[id];
+        if (!d) return;
+
+        var modalBody = document.getElementById('modalBody');
+        var html = '';
+
+        // Header
+        html += '<div class="modal-header"><div class="modal-type-badge">' + d.type + '</div><h2>' + d.title + '</h2><p>' + d.desc + '</p></div>';
+
+        // Scorecard
+        html += '<div class="modal-scorecard">' + buildScorecard(d.scorecard) + '</div>';
+
+        // Body
+        html += '<div class="modal-body">';
+
+        // Keywords
+        html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-key"></i></span> Keyword Research</div>' + buildKeywords(d.keywords) + '</div>';
+
+        // SERP Analysis
+        html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-magnifying-glass"></i></span> SERP Analysis</div><p class="modal-text">' + d.serp + '</p></div>';
+
+        // Content Preview
+        html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-file-lines"></i></span> Content Preview</div><div class="content-preview">' + d.content + '</div></div>';
+
+        // Type-specific extras
+        html += buildExtras(id, d);
+
+        // Strategy Note
+        html += '<div class="strategy-note"><div class="sn-title"><i class="fas fa-lightbulb"></i> Strategy Note</div><p>' + d.strategy + '</p></div>';
+
+        // FAQs
+        html += buildFaqs(d.faqs);
+
+        html += '</div>';
+        modalBody.innerHTML = html;
+    }
+
+    function openSampleModal(id) {
+        populateModal(id);
+        var overlay = document.getElementById('sampleModalOverlay');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() { overlay.classList.add('visible'); });
+        });
+    }
+
+    function closeSampleModal() {
+        var overlay = document.getElementById('sampleModalOverlay');
+        overlay.classList.remove('visible');
+        setTimeout(function() {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }, 350);
+    }
+
+    // Close on overlay click
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'sampleModalOverlay') closeSampleModal();
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeSampleModal();
+            closeCertModal();
+        }
+    });
+
+    // ========== CERTIFICATE PREVIEW MODAL ==========
+    var currentCertUrl = '';
+
+    function openCertModal(title, url) {
+        currentCertUrl = url;
+        document.getElementById('certModalTitle').textContent = title;
+        document.getElementById('certModalOpenLink').href = url;
+
+        var body = document.getElementById('certModalBody');
+        var isPdf = url.toLowerCase().endsWith('.pdf');
+
+        if (isPdf) {
+            body.innerHTML = '<iframe src="' + url + '#toolbar=0&navpanes=0" title="Certificate preview"></iframe>';
+        } else {
+            body.innerHTML = '<iframe src="' + url + '" title="Certificate preview" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>';
+        }
+
+        var overlay = document.getElementById('certModalOverlay');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() { overlay.classList.add('visible'); });
+        });
+    }
+
+    function closeCertModal() {
+        var overlay = document.getElementById('certModalOverlay');
+        if (!overlay.classList.contains('open')) return;
+        overlay.classList.remove('visible');
+        setTimeout(function() {
+            overlay.classList.remove('open');
+            document.getElementById('certModalBody').innerHTML = '';
+            if (!document.getElementById('sampleModalOverlay').classList.contains('open')) {
+                document.body.style.overflow = '';
+            }
+        }, 350);
+    }
+
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'certModalOverlay') closeCertModal();
+    });
+</script>
+
+<!-- SAMPLE MODAL -->
+<div class="sample-modal-overlay" id="sampleModalOverlay" role="dialog" aria-modal="true">
+    <div class="sample-modal">
+        <button class="modal-close" onclick="closeSampleModal()" aria-label="Close modal">&times;</button>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<!-- CERTIFICATE PREVIEW MODAL -->
+<div class="cert-modal-overlay" id="certModalOverlay" role="dialog" aria-modal="true">
+    <div class="cert-modal-frame">
+        <div class="cert-modal-header">
+            <h3 id="certModalTitle">Certificate</h3>
+            <div class="cert-modal-actions">
+                <a id="certModalOpenLink" href="#" target="_blank" rel="noopener" class="cert-modal-link"><i class="fas fa-external-link-alt"></i> Open Original</a>
+                <button class="cert-modal-close" onclick="closeCertModal()" aria-label="Close">&times;</button>
+            </div>
+        </div>
+        <div class="cert-modal-body" id="certModalBody"></div>
+    </div>
+</div>
+
+</body>
+</html>
