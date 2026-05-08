@@ -34,7 +34,6 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
         /* NAVIGATION */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -60,7 +59,6 @@
         }
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 5px; }
         .hamburger span { width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
-
         /* HERO */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 8rem 2rem 4rem; overflow: hidden; }
         .hero::before {
@@ -137,14 +135,12 @@
         .hero-stat h3 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-stat p { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
         /* SECTIONS COMMON */
         section { padding: 6rem 2rem; }
         .section-inner { max-width: 1100px; margin: 0 auto; }
         .section-label { display: inline-block; color: var(--accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem; }
         .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
         .section-subtitle { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; line-height: 1.7; margin-bottom: 3rem; }
-
         /* ABOUT */
         .about { background: var(--bg-secondary); }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -157,7 +153,6 @@
         .highlight-box p { color: var(--text-primary); font-style: italic; font-size: 1.05rem; }
         .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
         .about-tags span { background: var(--accent-dim); color: var(--accent); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
-
         /* SERVICES */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: all 0.4s ease; position: relative; overflow: hidden; }
@@ -169,7 +164,6 @@
         .service-card .learn-more i { font-size: 0.7rem; transition: transform 0.3s ease; }
         .service-card .learn-more:hover { gap: 0.6rem; }
         .service-card .learn-more:hover i { transform: translateX(3px); }
-
         /* EXPERIENCE TIMELINE */
         .experience { background: var(--bg-secondary); }
         .timeline { position: relative; padding-left: 2rem; }
@@ -182,7 +176,6 @@
         .timeline-date { color: var(--accent); font-size: 0.8rem; font-weight: 600; background: var(--accent-dim); padding: 0.25rem 0.75rem; border-radius: 100px; }
         .timeline-company { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; }
         .timeline-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
-
         /* FEATURED CASE STUDY */
         .featured-case { background: var(--bg-secondary); }
         .featured-case-hero {
@@ -202,7 +195,6 @@
         .featured-metric:last-child { border-right: none; }
         .featured-metric .fm-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .featured-metric .fm-label { color: var(--text-muted); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
-
         /* ACCORDION */
         .accordion { display: flex; flex-direction: column; gap: 0.75rem; }
         .accordion-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.3s; }
@@ -221,7 +213,6 @@
         .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .accordion-item.open .accordion-body { max-height: 3000px; }
         .accordion-content { padding: 0 1.5rem 1.5rem; }
-
         /* DATA TABLES */
         .data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.825rem; }
         .data-table th { background: rgba(0, 212, 170, 0.08); color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.7rem; padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
@@ -231,7 +222,6 @@
         .data-table .metric-good { color: var(--success); font-weight: 600; }
         .data-table .metric-warn { color: var(--warning); font-weight: 600; }
         .data-table .metric-bad { color: var(--danger); font-weight: 600; }
-
         /* SCORE BAR */
         .score-row { display: flex; align-items: center; gap: 0.75rem; margin: 0.5rem 0; }
         .score-label { width: 130px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; }
@@ -246,7 +236,6 @@
         .score-legend .dot { width: 10px; height: 10px; border-radius: 3px; }
         .score-legend .dot.before { background: rgba(255, 107, 107, 0.6); }
         .score-legend .dot.after { background: var(--accent); }
-
         /* CONTENT INSIDE ACCORDION */
         .acc-insight { background: rgba(0, 212, 170, 0.06); border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
         .acc-insight strong { color: var(--text-primary); }
@@ -254,7 +243,6 @@
         .acc-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.75rem; }
         .keyword-pill { display: inline-block; background: var(--bg-secondary); border: 1px solid var(--border); padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.7rem; color: var(--text-secondary); margin: 0.15rem; }
         .keyword-pill.high { border-color: rgba(0,212,170,0.3); color: var(--accent); }
-
         /* MINI CASE STUDY CARDS (for other projects) */
         .mini-cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
         .mini-case { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.3s; }
@@ -266,14 +254,12 @@
         .mini-case .mc-stat { text-align: center; }
         .mini-case .mc-stat .v { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .mini-case .mc-stat .l { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-
         /* WRITING SAMPLES */
         .samples { background: var(--bg-secondary); }
         .samples-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .sample-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; transition: all 0.3s ease; display: flex; flex-direction: column; cursor: pointer; }
         .sample-card:hover { transform: translateY(-3px); border-color: rgba(0,212,170,0.2); }
         .sample-card:active { transform: translateY(-1px); }
-
         /* SAMPLE MODAL */
         .sample-modal-overlay {
             position: fixed; inset: 0; z-index: 2000; background: rgba(5, 5, 10, 0.85);
@@ -297,7 +283,6 @@
             transition: all 0.3s; line-height: 1;
         }
         .modal-close:hover { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,212,170,0.3); }
-
         /* Modal Header */
         .modal-header {
             padding: 2.5rem 2.5rem 1.5rem; border-bottom: 1px solid var(--border);
@@ -306,7 +291,6 @@
         .modal-type-badge { display: inline-block; background: var(--accent-dim); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
         .modal-header h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; line-height: 1.25; margin-bottom: 0.75rem; padding-right: 3rem; }
         .modal-header p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
-
         /* Scorecard */
         .modal-scorecard { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-bottom: 1px solid var(--border); }
         .sc-item { text-align: center; padding: 1.25rem 0.75rem; border-right: 1px solid var(--border); position: relative; }
@@ -316,7 +300,6 @@
         .sc-score.mid { color: var(--warning); }
         .sc-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.35rem; }
         .sc-desc { font-size: 0.65rem; color: var(--text-muted); line-height: 1.4; padding: 0 0.25rem; }
-
         /* Modal Body */
         .modal-body { padding: 2rem 2.5rem 2.5rem; }
         .modal-section { margin-bottom: 2rem; }
@@ -328,14 +311,12 @@
         .modal-section-title .ms-icon { width: 28px; height: 28px; background: var(--accent-dim); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
         .modal-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
         .modal-text strong { color: var(--text-primary); }
-
         /* Keyword Tags in Modal */
         .kw-group { margin-bottom: 0.75rem; }
         .kw-group-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.35rem; }
         .kw-pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
         .kw-pill { display: inline-block; background: var(--bg-card); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; color: var(--text-secondary); }
         .kw-pill.primary { border-color: rgba(0,212,170,0.3); color: var(--accent); background: var(--accent-dim); }
-
         /* Content Preview Box */
         .content-preview {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
@@ -347,7 +328,6 @@
         .content-preview ul { padding-left: 1.25rem; margin: 0.5rem 0; }
         .content-preview li { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.35rem; }
         .content-preview img { width: 100%; border-radius: 10px; margin: 0.75rem 0; border: 1px solid var(--border); }
-
         /* Extras: Before/After, Templates, Flow */
         .before-after-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.75rem 0; }
         .ba-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
@@ -357,43 +337,36 @@
         .ba-box.before .ba-label { color: var(--danger); }
         .ba-box.after .ba-label { color: var(--success); }
         .ba-box p, .ba-box li { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
-
         .strategy-note {
             background: rgba(0,212,170,0.06); border-left: 3px solid var(--accent);
             padding: 1rem 1.25rem; border-radius: 0 10px 10px 0; margin: 0.75rem 0;
         }
         .strategy-note .sn-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; }
         .strategy-note p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
-
         .cta-box {
             background: var(--gradient-1); border-radius: 12px; padding: 1.25rem 1.5rem;
             display: flex; align-items: center; justify-content: space-between; margin: 0.75rem 0;
         }
         .cta-box p { color: var(--bg-primary); font-weight: 700; font-size: 0.9rem; }
         .cta-box .cta-arrow { color: var(--bg-primary); font-size: 1.25rem; font-weight: 700; }
-
         .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0.75rem 0; }
         .metric-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; }
         .metric-card .mv { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .metric-card .ml { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
-
         .faq-list { margin: 0.5rem 0; }
         .faq-item { border-bottom: 1px solid var(--border); padding: 0.75rem 0; }
         .faq-item:last-child { border-bottom: none; }
         .faq-q { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.35rem; }
         .faq-a { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
-
         .outreach-template {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
             padding: 1.25rem 1.5rem; margin: 0.75rem 0; font-family: monospace;
         }
         .outreach-template .ot-label { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.5rem; }
         .outreach-template p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.7; font-family: monospace; }
-
         .workflow-steps { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 0.75rem 0; }
         .wf-step { background: var(--bg-card); border: 1px solid var(--border); padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
         .wf-arrow { color: var(--accent); font-size: 1rem; margin: 0 0.35rem; }
-
         .calendar-snippet { margin: 0.75rem 0; }
         .cal-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.78rem; }
         .cal-row.cal-header { color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.06em; }
@@ -401,14 +374,12 @@
         .status-badge.published { background: rgba(0,212,170,0.15); color: var(--success); }
         .status-badge.drafting { background: rgba(255,179,71,0.15); color: var(--warning); }
         .status-badge.review { background: rgba(0,163,255,0.15); color: #00a3ff; }
-
         .compliance-box {
             background: rgba(123, 97, 255, 0.06); border-left: 3px solid #7b61ff;
             padding: 1rem 1.25rem; border-radius: 0 10px 10px 0; margin: 0.75rem 0;
         }
         .compliance-box .cb-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 700; color: #7b61ff; margin-bottom: 0.35rem; }
         .compliance-box p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
-
         /* Modal Responsive */
         @media (max-width: 900px) {
             .modal-scorecard { grid-template-columns: repeat(3, 1fr); }
@@ -435,7 +406,6 @@
         .sample-view-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem; padding: 0.5rem 1.1rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
         .sample-view-btn i { font-size: 0.7rem; }
         .sample-view-btn:hover { background: var(--accent); color: var(--bg-primary); }
-
         /* CERTIFICATIONS */
         .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
         .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; gap: 1rem; align-items: center; transition: all 0.3s ease; }
@@ -494,7 +464,6 @@
             .cert-modal-frame { max-height: 90vh; border-radius: 14px; }
             .cert-modal-body, .cert-modal-body iframe { min-height: 400px; }
         }
-
         /* EDUCATION */
         .education { background: var(--bg-secondary); }
         .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -504,7 +473,6 @@
         .edu-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; margin-bottom: 0.25rem; }
         .edu-card .edu-degree { color: var(--accent); font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; }
         .edu-card .edu-year { color: var(--text-muted); font-size: 0.8rem; }
-
         /* CONTACT */
         .contact { text-align: center; position: relative; overflow: hidden; }
         .contact::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(0, 212, 170, 0.06) 0%, transparent 70%); }
@@ -513,21 +481,17 @@
         .contact-methods { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
         .contact-pill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 100px; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: all 0.3s; }
         .contact-pill:hover { border-color: var(--accent); color: var(--accent); }
-
         /* FOOTER */
         footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; }
-
         /* SCROLL ANIMATIONS */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-
         /* MOBILE NAV */
         .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 15, 0.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
         .mobile-nav.open { display: flex; }
         .mobile-nav a { color: var(--text-primary); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; transition: color 0.3s; }
         .mobile-nav a:hover { color: var(--accent); }
         .mobile-nav-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; color: var(--text-primary); font-size: 2rem; cursor: pointer; }
-
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .nav-links { display: none; }
@@ -562,7 +526,6 @@
     </style>
 </head>
 <body>
-
 <!-- NAVIGATION -->
 <nav id="navbar">
     <div class="nav-inner">
@@ -581,7 +544,6 @@
         </button>
     </div>
 </nav>
-
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
     <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
@@ -593,7 +555,6 @@
     <a href="#certifications" onclick="toggleMobileNav()">Certifications</a>
     <a href="#contact" onclick="toggleMobileNav()">Let's Talk</a>
 </div>
-
 <!-- HERO -->
 <section class="hero" id="hero">
     <div class="hero-layout">
@@ -627,7 +588,6 @@
         </div>
     </div>
 </section>
-
 <!-- ABOUT -->
 <section class="about" id="about">
     <div class="section-inner">
@@ -665,7 +625,6 @@
         </div>
     </div>
 </section>
-
 <!-- SERVICES -->
 <section class="services" id="services">
     <div class="section-inner">
@@ -712,7 +671,6 @@
         </div>
     </div>
 </section>
-
 <!-- EXPERIENCE -->
 <section class="experience" id="experience">
     <div class="section-inner">
@@ -722,55 +680,45 @@
         <div class="timeline">
             <div class="timeline-item current reveal">
                 <div class="timeline-header">
-                    <span class="timeline-role">Content Writer</span>
-                    <span class="timeline-date">Dec 2024 - Present</span>
+                    <span class="timeline-role">SEO Content Specialist</span>
+                    <span class="timeline-date">Jan 2025 - Present</span>
                 </div>
                 <div class="timeline-company">Measure Marketing Results Inc. &middot; Freelance &middot; Canada (Remote)</div>
-                <div class="timeline-desc">Writing long-form, data-driven content for B2B decision-makers in the marketing and analytics space. Articles are structured around search intent and lead generation, not just traffic.</div>
-            </div>
-            <div class="timeline-item current reveal">
-                <div class="timeline-header">
-                    <span class="timeline-role">Founder &amp; Editor-in-Chief</span>
-                    <span class="timeline-date">Jul 2022 - Present</span>
-                </div>
-                <div class="timeline-company">Crypto news publication &middot; Self-employed</div>
-                <div class="timeline-desc">Founded and scaled a crypto news publication from scratch. Hired and managed a distributed editorial team, designed the content and SEO architecture, and established the publishing standards and quality workflows that kept output consistent at scale.</div>
+                <div class="timeline-desc">Created SEO-driven long-form content for technical and B2B audiences, aligning organic search strategy with lead generation and brand positioning goals. Developed high-intent content optimized for search visibility, readability, and conversion performance, applying SEO best practices across content structure, keyword targeting, internal linking, and search intent optimization.</div>
             </div>
             <div class="timeline-item reveal">
                 <div class="timeline-header">
-                    <span class="timeline-role">SEO Copywriter &amp; Linkbuilder</span>
-                    <span class="timeline-date">Mar 2024 - Mar 2025</span>
+                    <span class="timeline-role">Search Engine Optimization Specialist</span>
+                    <span class="timeline-date">Feb 2024 - Feb 2026</span>
                 </div>
-                <div class="timeline-company">G Squared &middot; Full-time &middot; Sydney, Australia (Remote)</div>
-                <div class="timeline-desc">Executed SEO content strategies and link acquisition campaigns for a digital agency. Aligned content output with domain authority goals and broader organic growth targets across multiple client accounts.</div>
+                <div class="timeline-company">MedVirtual &middot; Contract &middot; United States (Remote)</div>
+                <div class="timeline-desc">Led SEO and content operations for a U.S. healthcare staffing brand, managing keyword strategy, technical on-page SEO, content optimization, and performance analysis across the marketing site. Built AI-assisted SEO and content automation systems using Claude, n8n, Webflow, Ahrefs, GA4, Search Console, Notion, and Microsoft Clarity. Drove organic traffic from 21 to 8,000 monthly visits by building SEO-driven content systems and automated workflows.</div>
             </div>
             <div class="timeline-item reveal">
                 <div class="timeline-header">
-                    <span class="timeline-role">SEO Specialist</span>
-                    <span class="timeline-date">Feb 2024 - Jun 2024</span>
+                    <span class="timeline-role">Content Writer &amp; SEO Specialist</span>
+                    <span class="timeline-date">Feb 2022 - Mar 2024</span>
                 </div>
-                <div class="timeline-company">Oily Olly &middot; Contract &middot; United States (Remote)</div>
-                <div class="timeline-desc">Led SEO initiatives for a US-based consumer brand: technical audits, site architecture improvements, and a keyword strategy focused on commercial intent. Delivered measurable improvement in organic visibility over the engagement.</div>
+                <div class="timeline-company">G Squared &middot; Full-time &middot; Australia (Remote)</div>
+                <div class="timeline-desc">Delivered SEO content and organic growth support for clients across e-commerce, telecommunications, retail, automotive, and lifestyle industries. Produced SEO-focused blogs, landing pages, website copy, and long-form content tailored to brand voice, search intent, and conversion goals. Conducted keyword research and content gap analysis to identify opportunities for topical expansion and organic growth.</div>
             </div>
             <div class="timeline-item reveal">
                 <div class="timeline-header">
-                    <span class="timeline-role">SEO Optimization Copywriter</span>
-                    <span class="timeline-date">Jan 2020 - Feb 2024</span>
+                    <span class="timeline-role">Search Engine Optimization Copywriter</span>
+                    <span class="timeline-date">Jan 2018 - Feb 2022</span>
                 </div>
-                <div class="timeline-company">Jiji Africa &middot; Full-time &middot; 4 yrs 2 mos</div>
-                <div class="timeline-desc">Wrote and optimized product content at scale for one of Africa's largest online marketplaces, improving discoverability, listing quality, and user engagement across millions of active listings. Four years of high-volume, structured content production in a fast-moving marketplace environment.</div>
+                <div class="timeline-company">Jiji Africa &middot; Full-time &middot; Remote</div>
+                <div class="timeline-desc">Created SEO-focused content for a large-scale e-commerce marketplace, producing blogs, landing pages, product listings, and web copy designed to improve discoverability, engagement, and organic performance across multiple regions. Optimized on-page SEO elements including metadata, headings, internal linking, and keyword targeting to improve search visibility.</div>
             </div>
         </div>
     </div>
 </section>
-
 <!-- CASE STUDIES -->
 <section class="featured-case" id="case-studies">
     <div class="section-inner">
         <span class="section-label reveal">Results</span>
         <h2 class="section-title reveal">Case Studies</h2>
         <p class="section-subtitle reveal">Real projects, real Ahrefs data, real impact. Click any section below to explore the full audit.</p>
-
         <!-- FEATURED: Michael & Son Audit -->
         <div class="featured-case-hero reveal">
             <div class="featured-case-banner">
@@ -788,10 +736,8 @@
                 <div class="featured-metric"><div class="fm-value">618</div><div class="fm-label">Referring Domains</div></div>
             </div>
         </div>
-
         <!-- ACCORDION SECTIONS -->
         <div class="accordion reveal">
-
             <!-- 1. Website & Content Audit -->
             <div class="accordion-item">
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
@@ -814,10 +760,8 @@
                             <tr><td>Referring Domains</td><td>618 live</td><td>Heavy local directory presence</td></tr>
                             <tr><td>Total Backlinks</td><td>8,661 live</td><td>395K all-time; healthy profile</td></tr>
                         </table>
-
                         <div class="acc-section-title">Technical Findings</div>
                         <div class="acc-text">Only 3 broken backlinks detected (excellent health). Exceptional internal link architecture with hub-and-spoke structure: /schedule (1,845 internal links), /blog (1,247), /about/contact (1,090). Referring domain profile dominated by local directories; opportunity exists to earn editorial links through data-driven content.</div>
-
                         <div class="acc-section-title">Homepage SEGLAI Scorecard</div>
                         <div class="score-legend"><span><span class="dot before"></span> Before</span><span><span class="dot after"></span> After (Recommended)</span></div>
                         <div class="score-row"><span class="score-label">SEO</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:68%"></div></div><span class="score-num">68</span><span class="score-delta">+14</span></div>
@@ -830,7 +774,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 2. Keyword Research -->
             <div class="accordion-item">
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
@@ -851,7 +794,6 @@
                             <tr><td>ac repair near me</td><td>13,000</td><td class="metric-good">2</td><td>#20</td><td class="metric-good">High</td></tr>
                             <tr><td>water heater replacement</td><td>92,000</td><td class="metric-good">11</td><td>#19</td><td class="metric-good">High</td></tr>
                         </table>
-
                         <div class="acc-section-title">Untapped High-Volume Opportunities</div>
                         <table class="data-table">
                             <tr><th>Keyword</th><th>Volume</th><th>KD</th><th>Status</th></tr>
@@ -860,7 +802,6 @@
                             <tr><td>gas water heater</td><td>18,000</td><td class="metric-good">4</td><td class="metric-warn">Not ranking</td></tr>
                             <tr><td>electric water heater</td><td>33,000</td><td class="metric-good">10</td><td class="metric-warn">Not ranking</td></tr>
                         </table>
-
                         <div class="acc-section-title">Topic Clusters Identified</div>
                         <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.5rem 0">
                             <span class="keyword-pill high">Water Heating (680K+ vol)</span>
@@ -873,7 +814,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 3. Blog Optimization -->
             <div class="accordion-item">
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
@@ -893,7 +833,6 @@
                             <tr><td>Furnace Installation Cost</td><td>872/mo</td><td>149</td><td>"how much does a new furnace cost" (2,000)</td></tr>
                             <tr><td>Sewer Line Replacement Cost</td><td>909/mo</td><td>105</td><td>"sewer pipe replacement" (5,200)</td></tr>
                         </table>
-
                         <div class="acc-section-title">Generator Cost Post: SEGLAI Before / After</div>
                         <div class="score-legend"><span><span class="dot before"></span> Before</span><span><span class="dot after"></span> After Optimization</span></div>
                         <div class="score-row"><span class="score-label">SEO</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:72%"></div></div><span class="score-num">72</span><span class="score-delta">+13</span></div>
@@ -902,12 +841,10 @@
                         <div class="score-row"><span class="score-label">LLM Friendly</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:58%"></div></div><span class="score-num">58</span><span class="score-delta">+21</span></div>
                         <div class="score-row"><span class="score-label">AIR</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:66%"></div></div><span class="score-num">66</span><span class="score-delta">+12</span></div>
                         <div class="score-row"><span class="score-label">Internal Links</span><div class="score-bar-track"><div class="score-bar-fill before" style="width:48%"></div></div><span class="score-num">48</span><span class="score-delta">+24</span></div>
-
                         <div class="acc-insight"><strong>Composite: 55/100 → 75/100 (+20 points).</strong> Key changes: Added FAQ schema (8 Q&amp;A pairs), author credentials, cost breakdown tables, comparison by generator type, and 6 new contextual internal links to service pages and estimator tool.</div>
                     </div>
                 </div>
             </div>
-
             <!-- 4. Commercial Traffic Strategy -->
             <div class="accordion-item">
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
@@ -933,7 +870,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 5. 30-60-90 Day Plan -->
             <div class="accordion-item">
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
@@ -948,13 +884,10 @@
                     <div class="accordion-content">
                         <div class="acc-section-title">Days 1-30: Quick Wins</div>
                         <div class="acc-text">Implement schema markup (Organization + LocalBusiness). Build 5 contextual backlinks to "water heater cost" article. Optimize homepage meta description for CTR. Add FAQ schema to top 3 blog posts. Create 2 new cost comparison posts (tankless + electric vs. gas).</div>
-
                         <div class="acc-section-title">Days 31-60: Build Momentum</div>
                         <div class="acc-text">Launch Water Heater content cluster with pillar page + 4 supporting posts. Publish HVAC cluster pillar page. Build internal link network across cluster posts. Begin outreach for backlinks to new content. Optimize existing furnace cost blog post with expanded sections.</div>
-
                         <div class="acc-section-title">Days 61-90: Scale &amp; Measure</div>
                         <div class="acc-text">Analyze ranking improvements with Ahrefs position tracking. Launch Plumbing and Restoration content clusters. Expand first two clusters with additional subtopics. Begin paid search campaign to validate commercial intent. Final performance analysis and Q2 strategy planning.</div>
-
                         <div class="acc-section-title">90-Day KPI Targets</div>
                         <table class="data-table">
                             <tr><th>KPI</th><th>Baseline</th><th>Target</th><th>Growth</th></tr>
@@ -966,7 +899,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- 6. Content Cluster Plan -->
             <div class="accordion-item">
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
@@ -988,7 +920,6 @@
                             <tr><td>Restoration</td><td>Water Damage &amp; Restoration Guide</td><td>4 posts</td><td>80K+</td><td>400-600/mo</td></tr>
                             <tr><td>Air Quality</td><td>Air Duct Cleaning Guide</td><td>3 posts</td><td>180K+</td><td>300-500/mo</td></tr>
                         </table>
-
                         <div class="acc-section-title">Water Heater Cluster: Linking Structure</div>
                         <div class="acc-text" style="font-family: monospace; font-size: 0.8rem; background: var(--bg-secondary); padding: 1rem; border-radius: 8px; line-height: 1.8;">
                             PILLAR: "Complete Water Heater Guide"<br>
@@ -998,23 +929,21 @@
                             &nbsp;&nbsp;├── Maintenance → Post #6 (Maintenance Guide)<br>
                             &nbsp;&nbsp;└── Electric vs. Gas → Post #2 (Comparison)
                         </div>
-
                         <div class="acc-insight"><strong>Total estimated traffic lift from all clusters: +4,700-6,300 monthly visitors by Day 90.</strong> Each pillar should eventually support 10-15 posts for maximum topical authority.</div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Other Case Studies -->
         <div class="mini-cases-grid reveal" style="margin-top:3rem">
             <div class="mini-case">
-                <div class="mc-tag">Web3 / Crypto</div>
-                <h4>Coingram.us</h4>
-                <p>Built from zero: content architecture, editorial team, publishing workflows, and quality control systems.</p>
+                <div class="mc-tag">Healthcare / Web3</div>
+                <h4>MedVirtual</h4>
+                <p>Built SEO and content systems for a U.S. healthcare staffing brand using Claude, n8n, Webflow, Ahrefs, GA4, and Notion.</p>
                 <div class="mc-stats">
-                    <div class="mc-stat"><div class="v">0 → 1</div><div class="l">Platform</div></div>
-                    <div class="mc-stat"><div class="v">Full</div><div class="l">SEO Build</div></div>
-                    <div class="mc-stat"><div class="v">Team</div><div class="l">Hired</div></div>
+                    <div class="mc-stat"><div class="v">21 → 8K</div><div class="l">Monthly Visits</div></div>
+                    <div class="mc-stat"><div class="v">2 yrs</div><div class="l">Duration</div></div>
+                    <div class="mc-stat"><div class="v">AI</div><div class="l">Automation</div></div>
                 </div>
             </div>
             <div class="mini-case">
@@ -1030,17 +959,16 @@
             <div class="mini-case">
                 <div class="mc-tag">SEO / Link Building</div>
                 <h4>G Squared</h4>
-                <p>12-month SEO content strategy and link acquisition campaign for domain authority growth.</p>
+                <p>SEO content and organic growth support for clients across e-commerce, telecom, retail, automotive, and lifestyle.</p>
                 <div class="mc-stats">
-                    <div class="mc-stat"><div class="v">12 mo</div><div class="l">Campaign</div></div>
+                    <div class="mc-stat"><div class="v">2 yrs</div><div class="l">Duration</div></div>
+                    <div class="mc-stat"><div class="v">5+</div><div class="l">Industries</div></div>
                     <div class="mc-stat"><div class="v">DA</div><div class="l">Growth</div></div>
-                    <div class="mc-stat"><div class="v">Links</div><div class="l">Built</div></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <!-- WRITING SAMPLES -->
 <section class="samples" id="samples">
     <div class="section-inner">
@@ -1093,7 +1021,6 @@
         </div>
     </div>
 </section>
-
 <!-- CERTIFICATIONS -->
 <section class="certifications" id="certifications">
     <div class="section-inner">
@@ -1129,7 +1056,6 @@
         </div>
     </div>
 </section>
-
 <!-- EDUCATION -->
 <section class="education" id="education">
     <div class="section-inner">
@@ -1141,7 +1067,7 @@
                 <div class="edu-emoji"><i class="fas fa-stethoscope" style="font-size:2rem;color:var(--accent);"></i></div>
                 <h3>UV Gullas College of Medicine</h3>
                 <div class="edu-degree">Doctor of Medicine (MD)</div>
-                <div class="edu-year">2020 - 2023</div>
+                <div class="edu-year">2020 - 2024</div>
             </div>
             <div class="edu-card reveal">
                 <div class="edu-emoji"><i class="fas fa-microscope" style="font-size:2rem;color:var(--accent);"></i></div>
@@ -1152,7 +1078,6 @@
         </div>
     </div>
 </section>
-
 <!-- CONTACT -->
 <section class="contact" id="contact">
     <div class="section-inner">
@@ -1170,32 +1095,26 @@
         </div>
     </div>
 </section>
-
 <footer>
     <p>&copy; 2026 Joseph Joshua. All rights reserved. Built with clinical precision.</p>
 </footer>
-
 <script>
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
     // Navbar scroll
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
     });
-
     // Mobile nav
     function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
-
     // Accordion
     function toggleAccordion(btn) {
         const item = btn.closest('.accordion-item');
         item.classList.toggle('open');
     }
-
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -1204,7 +1123,6 @@
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
-
     // ========== SAMPLE MODAL SYSTEM (Sign Group Australia) ==========
     const sampleData = {
         "blog-data": {
@@ -1237,7 +1155,6 @@
                 { q: "How often should retail signage be updated?", a: "Structural signage such as fascia and dimensional lettering should be audited annually. Promotional window displays and seasonal signage should rotate every 3-4 weeks to maintain visual freshness and customer engagement." }
             ]
         },
-
         "blog-casestudy": {
             type: "Case Study",
             title: "How a Melbourne-Based Franchise Achieved Brand Consistency Across 12 Locations with Custom Signage",
@@ -1267,7 +1184,6 @@
             strategy: "This case study follows the Problem-Solution-Result framework proven to convert high-intent commercial prospects. By creating a realistic Melbourne franchise (BrewCraft Co.), we demonstrate Sign Group Australia's capability with multi-site rollouts without disclosing confidential client information. The specific suburb references (South Yarra, Fitzroy, Carlton) strengthen local SEO signals, and the measurable outcomes provide social proof for prospective franchise clients evaluating signage partners.",
             faqs: []
         },
-
         "press-release": {
             type: "Press Release",
             title: "Sign Group Australia Launches Eco-Friendly Illuminated Signage Range",
@@ -1294,7 +1210,6 @@
             strategy: "This press release follows AP style conventions and targets both media pickup and organic search indexing. The headline includes the brand name, product benefit (eco-friendly), and a specific claim (60% energy reduction) to maximise click-through. The executive quote is designed to be extractable for journalist use. The boilerplate establishes company credentials, and the media contact enables genuine press engagement.",
             faqs: []
         },
-
         "newsletter": {
             type: "Newsletter",
             title: "The Signage Edge: Autumn Maintenance Tips & Design Trends",
@@ -1324,7 +1239,6 @@
             strategy: "This newsletter follows the 85/15 value-to-promotion ratio recommended for B2B retention emails. The maintenance checklist provides immediate utility, establishing Sign Group Australia as a knowledgeable partner rather than a transactional vendor. The design trends section seeds demand for new services, and the featured project serves as social proof without overtly selling. The CTA is positioned after value delivery, not before it.",
             faqs: []
         },
-
         "service-page": {
             type: "Service Page",
             title: "Custom Business Signs in Melbourne | Sign Group Australia",
@@ -1354,7 +1268,6 @@
                 { q: "Do you install signage outside Melbourne?", a: "We serve all of metropolitan Melbourne and regional Victoria. For multi-site national rollouts, we coordinate with vetted installation partners in other states while managing design and fabrication centrally from our Melbourne workshop." }
             ]
         },
-
         "news-article": {
             type: "News Article",
             title: "New Victorian Signage Regulations Set to Affect Commercial Properties",
@@ -1381,7 +1294,6 @@
             faqs: []
         }
     };
-
     function buildScorecard(scores) {
         return scores.map(function(s) {
             var cls = s.score >= 85 ? 'high' : 'mid';
@@ -1397,7 +1309,6 @@
             return '<div class="sc-item"><div class="sc-label">' + icon + ' ' + s.label + '</div><div class="sc-score ' + cls + '">' + s.score + '</div><div class="sc-desc">' + s.desc + '</div></div>';
         }).join('');
     }
-
     function buildKeywords(kw) {
         var html = '<div class="kw-group"><div class="kw-group-label">Primary Keywords</div><div class="kw-pills">';
         kw.primary.forEach(function(k) { html += '<span class="kw-pill primary">' + k + '</span>'; });
@@ -1408,7 +1319,6 @@
         html += '</div></div>';
         return html;
     }
-
     function buildFaqs(faqs) {
         if (!faqs || faqs.length === 0) return '';
         var html = '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-circle-question"></i></span> FAQ</div><div class="faq-list">';
@@ -1418,10 +1328,8 @@
         html += '</div></div>';
         return html;
     }
-
     function buildExtras(id, data) {
         var html = '';
-
         // Blog Data: Author bio, reading time, related posts
         if (id === 'blog-data' && data.extras.author) {
             html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-user-pen"></i></span> Author</div>';
@@ -1431,7 +1339,6 @@
             data.extras.relatedPosts.forEach(function(p) { html += '<li style="font-size:0.84rem;color:var(--text-secondary);margin-bottom:0.35rem;">' + p + '</li>'; });
             html += '</ul></div>';
         }
-
         // Case Study: Testimonial + Key Results
         if (id === 'blog-casestudy' && data.extras.testimonial) {
             html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-chart-column"></i></span> Key Results</div><div class="metrics-row">';
@@ -1443,7 +1350,6 @@
             html += '<p style="font-style:italic;">"' + data.extras.testimonial.quote + '"</p>';
             html += '<p style="margin-top:0.5rem;font-weight:600;color:var(--text-primary);">' + data.extras.testimonial.author + ', ' + data.extras.testimonial.role + '</p></div>';
         }
-
         // Press Release: Boilerplate + Media Contact + End Marker
         if (id === 'press-release' && data.extras.boilerplate) {
             html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-building"></i></span> About Sign Group Australia</div>';
@@ -1454,7 +1360,6 @@
             html += '<i class="fas fa-phone" style="color:var(--accent);"></i> ' + data.extras.mediaContact.phone + '</p></div></div>';
             html += '<p style="text-align:center;font-weight:700;font-size:1.1rem;margin:1.5rem 0;color:var(--text-muted);">' + data.extras.endMarker + '</p>';
         }
-
         // Newsletter: Featured Project, CTA, Social, Footer
         if (id === 'newsletter' && data.extras.featuredProject) {
             html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-star"></i></span> ' + data.extras.featuredProject.title + '</div>';
@@ -1469,54 +1374,39 @@
             html += '<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.75rem;color:var(--text-muted);">';
             html += '<p>' + data.extras.footer.address + '</p><p>' + data.extras.footer.phone + '</p><p style="margin-top:0.5rem;">' + data.extras.footer.unsubscribe + '</p></div>';
         }
-
         // News Article: Byline + Read More
         if (id === 'news-article' && data.extras.byline) {
             html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-arrow-up-right-from-square"></i></span> Further Reading</div>';
             html += '<div class="content-preview"><p>' + data.extras.readMore + '</p></div></div>';
         }
-
         return html;
     }
-
     function populateModal(id) {
         var d = sampleData[id];
         if (!d) return;
-
         var modalBody = document.getElementById('modalBody');
         var html = '';
-
         // Header
         html += '<div class="modal-header"><div class="modal-type-badge">' + d.type + '</div><h2>' + d.title + '</h2><p>' + d.desc + '</p></div>';
-
         // Scorecard
         html += '<div class="modal-scorecard">' + buildScorecard(d.scorecard) + '</div>';
-
         // Body
         html += '<div class="modal-body">';
-
         // Keywords
         html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-key"></i></span> Keyword Research</div>' + buildKeywords(d.keywords) + '</div>';
-
         // SERP Analysis
         html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-magnifying-glass"></i></span> SERP Analysis</div><p class="modal-text">' + d.serp + '</p></div>';
-
         // Content Preview
         html += '<div class="modal-section"><div class="modal-section-title"><span class="ms-icon"><i class="fas fa-file-lines"></i></span> Content Preview</div><div class="content-preview">' + d.content + '</div></div>';
-
         // Type-specific extras
         html += buildExtras(id, d);
-
         // Strategy Note
         html += '<div class="strategy-note"><div class="sn-title"><i class="fas fa-lightbulb"></i> Strategy Note</div><p>' + d.strategy + '</p></div>';
-
         // FAQs
         html += buildFaqs(d.faqs);
-
         html += '</div>';
         modalBody.innerHTML = html;
     }
-
     function openSampleModal(id) {
         populateModal(id);
         var overlay = document.getElementById('sampleModalOverlay');
@@ -1526,7 +1416,6 @@
             requestAnimationFrame(function() { overlay.classList.add('visible'); });
         });
     }
-
     function closeSampleModal() {
         var overlay = document.getElementById('sampleModalOverlay');
         overlay.classList.remove('visible');
@@ -1535,12 +1424,10 @@
             document.body.style.overflow = '';
         }, 350);
     }
-
     // Close on overlay click
     document.addEventListener('click', function(e) {
         if (e.target && e.target.id === 'sampleModalOverlay') closeSampleModal();
     });
-
     // Close on ESC
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
@@ -1548,24 +1435,19 @@
             closeCertModal();
         }
     });
-
     // ========== CERTIFICATE PREVIEW MODAL ==========
     var currentCertUrl = '';
-
     function openCertModal(title, url) {
         currentCertUrl = url;
         document.getElementById('certModalTitle').textContent = title;
         document.getElementById('certModalOpenLink').href = url;
-
         var body = document.getElementById('certModalBody');
         var isPdf = url.toLowerCase().endsWith('.pdf');
-
         if (isPdf) {
             body.innerHTML = '<iframe src="' + url + '#toolbar=0&navpanes=0" title="Certificate preview"></iframe>';
         } else {
             body.innerHTML = '<iframe src="' + url + '" title="Certificate preview" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>';
         }
-
         var overlay = document.getElementById('certModalOverlay');
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -1573,7 +1455,6 @@
             requestAnimationFrame(function() { overlay.classList.add('visible'); });
         });
     }
-
     function closeCertModal() {
         var overlay = document.getElementById('certModalOverlay');
         if (!overlay.classList.contains('open')) return;
@@ -1586,12 +1467,10 @@
             }
         }, 350);
     }
-
     document.addEventListener('click', function(e) {
         if (e.target && e.target.id === 'certModalOverlay') closeCertModal();
     });
 </script>
-
 <!-- SAMPLE MODAL -->
 <div class="sample-modal-overlay" id="sampleModalOverlay" role="dialog" aria-modal="true">
     <div class="sample-modal">
@@ -1599,7 +1478,6 @@
         <div id="modalBody"></div>
     </div>
 </div>
-
 <!-- CERTIFICATE PREVIEW MODAL -->
 <div class="cert-modal-overlay" id="certModalOverlay" role="dialog" aria-modal="true">
     <div class="cert-modal-frame">
@@ -1613,6 +1491,5 @@
         <div class="cert-modal-body" id="certModalBody"></div>
     </div>
 </div>
-
 </body>
 </html>
